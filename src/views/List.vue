@@ -20,7 +20,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn flat class="blue--text">Read More</v-btn>
+          <v-btn @click="viewPost(Post)" flat class="blue--text">Read More</v-btn>
         </v-card-actions>
       </v-card>
     </div>
@@ -29,22 +29,30 @@
 
 <script>
 import { firestore } from '@/firebase/firestore'
+import { mapMutations } from 'vuex'
+import * as types from '@/vuex/mutation_types'
 
 export default {
-  data () {
-    return {
-      Posts: [],
-      headers: [
-        {text: 'Ranking', value: 'rank', sortable: false},
-        {text: 'Time left', value: 'timeLeft', sortable: false},
-        {text: 'Name', value: 'name', sortable: false},
-        {text: 'Date', value: 'date', sortable: false}
-      ]
-    }
-  },
   firestore () {
     return {
       Posts: firestore.collection('Post').orderBy('date', 'desc')
+    }
+  },
+  methods: {
+    ...mapMutations({setKey: types.SET_KEY,
+      setTitle: types.SET_TITLE,
+      setContent: types.SET_CONTENT,
+      setDate: types.SET_DATE,
+      setWriter: types.SET_WRITER,
+      setImgUrl: types.SET_IMG_URL}),
+    viewPost (v) {
+      this.setKey(v['.key'])
+      this.setTitle(v.title)
+      this.setContent(v.content)
+      this.setDate(v.date.seconds)
+      this.setWriter(v.writer)
+      this.setImgUrl(v.imgUrl)
+      this.$router.push('post')
     }
   }
 }

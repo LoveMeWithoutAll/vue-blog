@@ -1,0 +1,6 @@
+export const SET_KEY = 'setKey'
+export const SET_TITLE = 'setTitle'
+export const SET_CONTENT = 'setContent'
+export const SET_DATE = 'setDate'
+export const SET_WRITER = 'setWriter'
+export const SET_IMG_URL = 'setImgUrl'
