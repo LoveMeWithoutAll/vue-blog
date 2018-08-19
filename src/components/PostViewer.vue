@@ -10,7 +10,7 @@
         <span class="headline">{{ getTitle }}</span>
       </v-card-title>
       <v-card-text>
-        <span>{{ getContent }}</span>
+        <span v-html="getContent"></span>
       </v-card-text>
       <v-card-text>
         <span>

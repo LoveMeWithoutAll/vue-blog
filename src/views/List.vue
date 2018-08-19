@@ -16,7 +16,7 @@
           </v-container>
         </v-card-media>
         <v-card-text>
-          {{ truncateString(Post.content) }}
+          <span v-html="truncateString(Post.content)"></span>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>

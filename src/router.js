@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import List from '@/views/List.vue'
 import PostView from '@/components/PostViewer'
+import Writer from '@/components/Writer'
 
 Vue.use(Router)
 
@@ -24,6 +25,11 @@ export default new Router({
       path: '/post',
       name: 'post',
       component: PostView
+    },
+    {
+      path: '/writer',
+      name: 'Writer',
+      component: Writer
     }
   ]
 })

@@ -12,7 +12,7 @@
       <v-layout justify-space-between>
         <router-link to="/" class="body-2">Home</router-link>
         <router-link to="/about" class="body-2">About</router-link>
-        <a href="javascript:;" class="body-2">Write</a>
+        <router-link to="/writer" class="body-2">Write</router-link>
         <a href="javascript:;" @click="login" class="body-2">Login</a>
         <a href="javascript:;" class="body-2">Logout</a>
       </v-layout>
