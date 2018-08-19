@@ -16,7 +16,7 @@
           </v-container>
         </v-card-media>
         <v-card-text>
-          {{ Post.content }}
+          {{ truncateString(Post.content) }}
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -31,6 +31,7 @@
 import { firestore } from '@/firebase/firestore'
 import { mapMutations } from 'vuex'
 import * as types from '@/vuex/mutation_types'
+import _ from 'lodash'
 
 export default {
   firestore () {
@@ -53,6 +54,11 @@ export default {
       this.setWriter(v.writer)
       this.setImgUrl(v.imgUrl)
       this.$router.push('post')
+    },
+    truncateString (v) {
+      return _.truncate(v, {
+        'length': 80
+      })
     }
   }
 }

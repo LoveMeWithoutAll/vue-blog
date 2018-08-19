@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "firebase": "^5.4.0",
+    "lodash": "^4.17.10",
     "vue": "^2.5.17",
     "vue-firestore": "^0.2.9",
     "vue-router": "^3.0.1",
