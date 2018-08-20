@@ -19,6 +19,7 @@
 import { VueEditor } from 'vue2-editor'
 import { firestore } from '@/firebase/firestore'
 import FileUploader from '@/components/FileUploader'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
@@ -33,6 +34,9 @@ export default {
       imgUrl: ''
     }
   },
+  computed: {
+    ...mapGetters(['getUser'])
+  },
   methods: {
     savePost () {
       firestore
@@ -45,7 +49,7 @@ export default {
             seconds: new Date().getTime(),
             nanoseconds: 0
           },
-          writer: this.writer,
+          writer: this.getUser.displayName || this.writer,
           imgUrl: this.imgUrl
         })
         .then(() => this.$router.push('/'))
