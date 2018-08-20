@@ -22,6 +22,11 @@
         <b>Writer: </b>
         <span>{{ getWriter }}</span>
       </v-card-text>
+      <div v-if="getUser">
+        <v-layout align-center justify-end row fill-height>
+          <v-btn @click="update">update</v-btn>
+        </v-layout>
+      </div>
     </v-card>
   </v-flex>
 
@@ -37,8 +42,14 @@ export default {
       'getContent',
       'getDate',
       'getWriter',
-      'getImgUrl'
+      'getImgUrl',
+      'getUser'
     ])
+  },
+  methods: {
+    update () {
+      this.$router.push('Updater')
+    }
   }
 }
 </script>
