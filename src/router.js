@@ -1,15 +1,26 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import List from '@/views/List.vue'
+import PostView from '@/components/PostViewer'
+import Writer from '@/components/Writer'
+import Login from '@/components/Login'
+import Updater from '@/components/Updater'
+import store from '@/vuex/store'
 
 Vue.use(Router)
 
+const requireAuth = () => (from, to, next) => {
+  if (store.getters.getUser) return next() // isAuth === true면 페이지 이동
+  next('/') // isAuth === false면 다시 로그인 화면으로 이동
+}
+
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      name: 'list',
+      component: List
     },
     {
       path: '/about',
@@ -18,6 +29,28 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+    },
+    {
+      path: '/post',
+      name: 'post',
+      component: PostView
+    },
+    {
+      path: '/writer',
+      name: 'Writer',
+      component: Writer,
+      beforeEnter: requireAuth()
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
+    },
+    {
+      path: '/updater',
+      name: 'Updater',
+      component: Updater,
+      beforeEnter: requireAuth()
     }
   ]
 })

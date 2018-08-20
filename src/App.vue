@@ -1,31 +1,42 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app light>
+    <v-content>
+      <v-container>
+        <v-layout row wrap align-center>
+          <Nav></Nav>
+          <transition name="fade">
+            <router-view/>
+          </transition>
+        </v-layout>
+      </v-container>
+    </v-content>
+    <v-footer>
+      <span>&copy; 2018</span>
+    </v-footer>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import Nav from '@/components/Nav'
+
+export default {
+  components: {
+    Nav
+  }
 }
-#nav {
-  padding: 30px;
+</script>
+
+<style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition-property: opacity;
+  transition-duration: .25s;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.fade-enter-active {
+  transition-delay: .25s;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+.fade-enter, .fade-leave-active {
+  opacity: 0
 }
 </style>
