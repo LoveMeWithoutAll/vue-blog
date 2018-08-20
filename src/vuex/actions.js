@@ -2,7 +2,7 @@ import firebase from 'firebase'
 import { SET_USER } from './mutation_types'
 
 const setUser = ({commit}, user) => {
-  commit(SET_USER, user)
+  commit(SET_USER, user.user)
 }
 
 const signIn = (store, {email, password}) => {
