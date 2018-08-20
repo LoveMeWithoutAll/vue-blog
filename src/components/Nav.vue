@@ -12,19 +12,26 @@
       <v-layout justify-space-between>
         <router-link to="/" class="body-2">Home</router-link>
         <router-link to="/about" class="body-2">About</router-link>
-        <router-link to="/writer" class="body-2">Write</router-link>
-        <a href="javascript:;" @click="login" class="body-2">Login</a>
-        <a href="javascript:;" class="body-2">Logout</a>
+        <router-link v-if="getUser" to="/writer" class="body-2">Write</router-link>
+        <router-link v-if="!getUser" to="/login" class="body-2">Login</router-link>
+        <a v-if="getUser" @click="signOut" class="body-2">Logout</a>
       </v-layout>
     </div>
   </v-flex>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
+  computed: {
+    ...mapGetters(['getUser'])
+  },
   methods: {
-    login () {
-      console.log('login')
+    ...mapActions(['logout']),
+    signOut () {
+      this.logout()
+      this.$router.replace('/')
     }
   }
 }

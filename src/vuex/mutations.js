@@ -18,5 +18,8 @@ export default {
   },
   [types.SET_IMG_URL] (state, imgUrl) {
     state.imgUrl = imgUrl
+  },
+  [types.SET_USER] (state, user) {
+    state.user = user
   }
 }

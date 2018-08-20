@@ -4,5 +4,6 @@ export default {
   getContent: state => state.content,
   getDate: state => state.date,
   getWriter: state => state.writer,
-  getImgUrl: state => state.imgUrl
+  getImgUrl: state => state.imgUrl,
+  getUser: state => state.user
 }
