@@ -4,7 +4,9 @@
       <v-container>
         <v-layout row wrap align-center>
           <Nav></Nav>
-          <router-view/>
+          <transition name="fade">
+            <router-view/>
+          </transition>
         </v-layout>
       </v-container>
     </v-content>
@@ -23,3 +25,18 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition-property: opacity;
+  transition-duration: .25s;
+}
+
+.fade-enter-active {
+  transition-delay: .25s;
+}
+
+.fade-enter, .fade-leave-active {
+  opacity: 0
+}
+</style>

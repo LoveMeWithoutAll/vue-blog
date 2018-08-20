@@ -9,7 +9,7 @@
       </v-avatar>
       <div class="headline">what <span style="font-weight:bold">Books</span></div>
       <div class="subheading text-xs-center grey--text pt-1 pb-3">All we read</div>
-      <v-layout justify-space-between>
+      <v-layout justify-space-between class="mb-5">
         <router-link to="/" class="body-2">Home</router-link>
         <router-link to="/about" class="body-2">About</router-link>
         <router-link v-if="getUser" to="/writer" class="body-2">Write</router-link>
