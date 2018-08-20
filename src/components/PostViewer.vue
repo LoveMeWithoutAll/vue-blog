@@ -24,7 +24,7 @@
       </v-card-text>
       <div v-if="getUser">
         <v-layout align-center justify-end row fill-height>
-          <v-btn @click="update">update</v-btn>
+          <v-btn @click="update">edit</v-btn>
           <v-btn @click="makeHidden">delete</v-btn>
         </v-layout>
       </div>
