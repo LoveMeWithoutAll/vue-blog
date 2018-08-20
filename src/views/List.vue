@@ -37,9 +37,9 @@ export default {
   firestore () {
     return {
       Posts: firestore
-              .collection('Post')
-              .where('show', '==', true)
-              .orderBy('date', 'desc')
+        .collection('Post')
+        .where('show', '==', true)
+        .orderBy('date', 'desc')
     }
   },
   methods: {
