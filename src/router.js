@@ -4,8 +4,14 @@ import List from '@/views/List.vue'
 import PostView from '@/components/PostViewer'
 import Writer from '@/components/Writer'
 import Login from '@/components/Login'
+import store from '@/vuex/store'
 
 Vue.use(Router)
+
+const requireAuth = () => (from, to, next) => {
+  if (store.getters.getUser) return next() // isAuth === true면 페이지 이동
+  next('/') // isAuth === false면 다시 로그인 화면으로 이동
+}
 
 export default new Router({
   mode: 'history',
@@ -31,7 +37,8 @@ export default new Router({
     {
       path: '/writer',
       name: 'Writer',
-      component: Writer
+      component: Writer,
+      beforeEnter: requireAuth()
     },
     {
       path: '/login',
