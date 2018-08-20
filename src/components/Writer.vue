@@ -6,6 +6,7 @@
         label="Title"
         required>
       </v-text-field>
+      <file-uploader v-on:downloadURL="getDownloadUrl" class="mb-4"></file-uploader>
     </v-form>
     <vue-editor id="writer" v-model="content"></vue-editor>
     <v-layout align-center justify-end row fill-height>
@@ -17,15 +18,19 @@
 <script>
 import { VueEditor } from 'vue2-editor'
 import { firestore } from '@/firebase/firestore'
+import FileUploader from '@/components/FileUploader'
 
 export default {
   components: {
-    VueEditor
+    VueEditor,
+    FileUploader
   },
   data () {
     return {
       title: '',
-      content: ''
+      content: '',
+      writer: 'tester',
+      imgUrl: ''
     }
   },
   methods: {
@@ -40,13 +45,16 @@ export default {
             seconds: new Date().getTime(),
             nanoseconds: 0
           },
-          writer: 'ys',
-          imgUrl: 'http://www.book2018.org/resource/images/main/ban-txt.gif'
+          writer: this.writer,
+          imgUrl: this.imgUrl
         })
         .then(() => this.$router.push('/'))
         .catch((error) => {
           console.error(`Error adding document: ${error}`)
         })
+    },
+    getDownloadUrl (v) {
+      this.imgUrl = v
     }
   }
 }
