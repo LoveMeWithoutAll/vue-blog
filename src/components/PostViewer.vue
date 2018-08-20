@@ -29,15 +29,19 @@
         </v-layout>
       </div>
     </v-card>
+    <disqus v-bind:post-key="getKey"></disqus>
   </v-flex>
-
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import { firestore } from '@/firebase/firestore'
+import Disqus from './Disqus'
 
 export default {
+  components: {
+    Disqus
+  },
   computed: {
     ...mapGetters([
       'getKey',
