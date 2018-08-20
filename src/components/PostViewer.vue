@@ -25,6 +25,7 @@
       <div v-if="getUser">
         <v-layout align-center justify-end row fill-height>
           <v-btn @click="update">update</v-btn>
+          <v-btn @click="makeHidden">delete</v-btn>
         </v-layout>
       </div>
     </v-card>
@@ -34,10 +35,12 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { firestore } from '@/firebase/firestore'
 
 export default {
   computed: {
     ...mapGetters([
+      'getKey',
       'getTitle',
       'getContent',
       'getDate',
@@ -49,6 +52,20 @@ export default {
   methods: {
     update () {
       this.$router.push('Updater')
+    },
+    makeHidden () {
+      firestore
+        .collection('Post')
+        .doc(this.getKey)
+        .update({
+          show: false
+        })
+        .then(() => {
+          this.$router.push('/')
+        })
+        .catch((error) => {
+          console.error('Error on remove: ', error)
+        })
     }
   }
 }

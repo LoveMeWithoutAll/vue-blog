@@ -63,7 +63,8 @@ export default {
             nanoseconds: 0
           },
           writer: this.getUser.displayName || this.getWriter,
-          imgUrl: this.imgUrl || this.getImgUrl
+          imgUrl: this.imgUrl || this.getImgUrl,
+          show: true
         })
         .then(() => this.$router.push('/'))
         .catch((error) => {

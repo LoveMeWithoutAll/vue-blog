@@ -36,7 +36,10 @@ import _ from 'lodash'
 export default {
   firestore () {
     return {
-      Posts: firestore.collection('Post').orderBy('date', 'desc')
+      Posts: firestore
+              .collection('Post')
+              .where('show', '==', true)
+              .orderBy('date', 'desc')
     }
   },
   methods: {
