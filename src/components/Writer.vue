@@ -19,29 +19,46 @@
 import { VueEditor } from 'vue2-editor'
 import { firestore } from '@/firebase/firestore'
 import FileUploader from '@/components/FileUploader'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
+import * as types from '@/vuex/mutation_types'
 
 export default {
   components: {
     VueEditor,
     FileUploader
   },
-  data () {
-    return {
-      title: '',
-      content: '',
-      writer: 'tester',
-      imgUrl: ''
-    }
+  created () {
+    if (this.$route.name === 'writer') this.initArticleData()
   },
   computed: {
-    ...mapGetters(['getUser'])
+    ...mapGetters(['getKey', 'getTitle', 'getContent', 'getImgUrl', 'getWriter', 'getUser']),
+    title: {
+      get () {
+        return this.getTitle
+      },
+      set (value) {
+        this.updateTitle(value)
+      }
+    },
+    content: {
+      get () {
+        return this.getContent
+      },
+      set (value) {
+        this.updateContent(value)
+      }
+    }
   },
   methods: {
+    ...mapMutations({
+      updateTitle: types.SET_TITLE,
+      updateContent: types.SET_CONTENT,
+      initArticleData: types.INIT_ARTICLE_DATA
+    }),
     savePost () {
       firestore
         .collection('Post')
-        .doc(new Date().getTime().toString())
+        .doc(this.getKey || new Date().getTime().toString())
         .set({
           title: this.title,
           content: this.content,
@@ -50,7 +67,7 @@ export default {
             nanoseconds: 0
           },
           writer: this.getUser.displayName || this.writer,
-          imgUrl: this.imgUrl,
+          imgUrl: this.imgUrl || this.getImgUrl,
           show: true
         })
         .then(() => this.$router.push('/'))

@@ -21,5 +21,13 @@ export default {
   },
   [types.SET_USER] (state, user) {
     state.user = user
+  },
+  [types.INIT_ARTICLE_DATA] (state) {
+    state.key = ''
+    state.title = ''
+    state.content = ''
+    state.date = null
+    state.writer = ''
+    state.imgUrl = ''
   }
 }
