@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     update () {
-      this.$router.push('Updater')
+      this.$router.push('updater')
     },
     makeHidden () {
       firestore

@@ -4,7 +4,6 @@ import List from '@/views/List.vue'
 import PostView from '@/components/PostViewer'
 import Writer from '@/components/Writer'
 import Login from '@/components/Login'
-import Updater from '@/components/Updater'
 import store from '@/vuex/store'
 
 Vue.use(Router)
@@ -37,19 +36,19 @@ export default new Router({
     },
     {
       path: '/writer',
-      name: 'Writer',
+      name: 'writer',
       component: Writer,
       beforeEnter: requireAuth()
     },
     {
       path: '/login',
-      name: 'Login',
+      name: 'login',
       component: Login
     },
     {
       path: '/updater',
-      name: 'Updater',
-      component: Updater,
+      name: 'updater',
+      component: Writer,
       beforeEnter: requireAuth()
     }
   ]

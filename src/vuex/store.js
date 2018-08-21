@@ -19,7 +19,7 @@ const state = {
   key: '',
   title: '',
   content: '',
-  date: '',
+  date: null,
   writer: '',
   imgUrl: '',
   user: null
