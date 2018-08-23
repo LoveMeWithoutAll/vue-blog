@@ -10,7 +10,7 @@
         <span class="headline">{{ getTitle }}</span>
       </v-card-title>
       <v-card-text>
-        <span v-html="getContent"></span>
+        <span v-html="imgResizedContent"></span>
       </v-card-text>
       <v-card-text>
         <span>
@@ -36,6 +36,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { firestore } from '@/firebase/firestore'
+import _ from 'lodash'
 
 export default {
   computed: {
@@ -47,7 +48,10 @@ export default {
       'getWriter',
       'getImgUrl',
       'getUser'
-    ])
+    ]),
+    imgResizedContent () {
+      return _.replace(this.getContent, new RegExp('img src', 'g'), 'img width="100%" src')
+    }
   },
   methods: {
     update () {
