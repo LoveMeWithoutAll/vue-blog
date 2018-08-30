@@ -7,8 +7,8 @@
           src="https://lovemewithoutall.github.io/assets/images/binary.jpg"
         >
       </v-avatar>
-      <div class="headline">what <span style="font-weight:bold">Books</span></div>
-      <div class="subheading text-xs-center grey--text pt-1 pb-3">All we read</div>
+      <div class="headline">Book, Cook & <span style="font-weight:bold">Spook</span></div>
+      <div class="subheading text-xs-center grey--text pt-1 pb-3">All we read and cooked</div>
       <v-layout justify-space-between class="mb-5">
         <router-link to="/" class="body-2">Home</router-link>
         <router-link to="/about" class="body-2">About</router-link>
