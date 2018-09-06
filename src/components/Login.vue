@@ -7,13 +7,13 @@
         <v-text-field type="password" v-model="password" placeholder="Password"></v-text-field>
       </v-form>
       <v-btn v-on:click="signIn">Connection</v-btn>
-      <!-- <p>You don't have an account ? You can <router-link to="/sign-up">create one</router-link></p> -->
     </div>
   </v-flex>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import firebase from 'firebase'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'login',
@@ -27,9 +27,16 @@ export default {
     ...mapGetters({user: 'getUser'})
   },
   methods: {
-    ...mapActions(['login']),
     signIn () {
-      this.login({email: this.email, password: this.password})
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(
+          (user) => {},
+          (err) => {
+            alert('Oops. ' + err.message)
+          }
+        )
     }
   },
   watch: {
