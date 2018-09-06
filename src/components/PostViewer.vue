@@ -65,7 +65,7 @@ export default {
       setWriter: types.SET_WRITER,
       setImgUrl: types.SET_IMG_URL}),
     update () {
-      this.$router.push('updater')
+      this.$router.push('/updater')
     },
     makeHidden () {
       firestore
