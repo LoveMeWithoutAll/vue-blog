@@ -3,11 +3,11 @@ import Vuex from 'vuex'
 import getters from './getters'
 import mutations from './mutations'
 import actions from './actions'
-import firebase from 'firebase'
+import { firebaseAuth } from '@/firebase/firebaseAuth'
 
 Vue.use(Vuex)
 
-firebase.auth().onAuthStateChanged((user) => {
+firebaseAuth.onAuthStateChanged((user) => {
   if (user) {
     state.user = user
   } else {
