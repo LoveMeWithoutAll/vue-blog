@@ -1,9 +1,8 @@
-import firebase from 'firebase'
+import { firebaseAuth } from '@/firebase/firebaseAuth'
 
 export default {
   logout () {
-    firebase
-      .auth()
+    firebaseAuth
       .signOut()
       .then()
       .catch((error) => console.error(`SingOut Error: ${error}`))

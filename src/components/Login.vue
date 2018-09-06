@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import firebase from 'firebase'
+import { firebaseAuth } from '@/firebase/firebaseAuth'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -28,8 +28,7 @@ export default {
   },
   methods: {
     signIn () {
-      firebase
-        .auth()
+      firebaseAuth
         .signInWithEmailAndPassword(this.email, this.password)
         .then(
           (user) => {},
