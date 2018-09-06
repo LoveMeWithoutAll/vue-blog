@@ -51,6 +51,7 @@
 import { firestorage } from '@/firebase/firestorage'
 
 export default {
+  props: ['oldImgUrl'],
   data () {
     return {
       progressUpload: 0,
@@ -60,6 +61,9 @@ export default {
       uploadEnd: false,
       downloadURL: ''
     }
+  },
+  created () {
+    if (this.oldImgUrl) this.setCoverImgOnUpdate()
   },
   methods: {
     selectFile () {
@@ -77,6 +81,17 @@ export default {
       this.uploadTask = firestorage.ref('images/' + file.name).put(file)
     },
     deleteImage () {
+      if (this.oldImgUrl === '') {
+        this.deleteImgOnFirebase()
+      } else {
+        this.deleteImgOnUpdate()
+      }
+    },
+    setCoverImgOnUpdate () {
+      this.uploadEnd = true
+      this.downloadURL = this.oldImgUrl
+    },
+    deleteImgOnFirebase () {
       firestorage
         .ref('images/' + this.fileName)
         .delete()
@@ -88,6 +103,11 @@ export default {
         .catch((error) => {
           console.error(`file delete error occured: ${error}`)
         })
+    },
+    deleteImgOnUpdate () {
+      this.uploading = false
+      this.uploadEnd = false
+      this.downloadURL = ''
     }
   },
   watch: {
