@@ -6,7 +6,7 @@
         label="Title"
         required>
       </v-text-field>
-      <file-uploader v-on:downloadURL="getDownloadUrl" class="mb-4"></file-uploader>
+      <file-uploader v-on:downloadURL="getDownloadUrl" v-bind:oldImgUrl="oldImgUrl" class="mb-4"></file-uploader>
     </v-form>
     <vue-editor
       id="writer"
@@ -33,8 +33,14 @@ export default {
     VueEditor,
     FileUploader
   },
+  data () {
+    return {
+      oldImgUrl: ''
+    }
+  },
   created () {
     if (this.$route.name === 'writer') this.initArticleData()
+    if (this.getKey !== '') this.oldImgUrl = this.getImgUrl
   },
   computed: {
     ...mapGetters(['getKey', 'getTitle', 'getContent', 'getImgUrl', 'getWriter', 'getUser']),
