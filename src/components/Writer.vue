@@ -8,7 +8,12 @@
       </v-text-field>
       <file-uploader v-on:downloadURL="getDownloadUrl" class="mb-4"></file-uploader>
     </v-form>
-    <vue-editor id="writer" v-model="content"></vue-editor>
+    <vue-editor
+      id="writer"
+      v-model="content"
+      useCustomImageHandler
+      @imageAdded="handleImageAdded"
+    ></vue-editor>
     <v-layout align-center justify-end row fill-height>
       <v-btn @click="savePost">save</v-btn>
     </v-layout>
@@ -18,6 +23,7 @@
 <script>
 import { VueEditor } from 'vue2-editor'
 import { firestore } from '@/firebase/firestore'
+import { firestorage } from '@/firebase/firestorage'
 import FileUploader from '@/components/FileUploader'
 import { mapGetters, mapMutations } from 'vuex'
 import * as types from '@/vuex/mutation_types'
@@ -77,6 +83,18 @@ export default {
     },
     getDownloadUrl (v) {
       this.imgUrl = v
+    },
+    handleImageAdded (file, Editor, cursorLocation) {
+      let uploadTask = firestorage.ref('images/' + file.name).put(file)
+      uploadTask.on('state_changed', snapshot => {
+      }, error => {
+        console.error(`Upload error occured: ${error}`)
+      }, () => {
+        uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+          console.log('File available at', downloadURL)
+          Editor.insertEmbed(cursorLocation, 'image', downloadURL)
+        })
+      })
     }
   }
 }
