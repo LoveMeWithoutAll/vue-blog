@@ -11,6 +11,7 @@
     "firebase": "^5.4.0",
     "lodash": "^4.17.10",
     "vue": "^2.5.17",
+    "vue-disqus": "^3.0.4",
     "vue-firestore": "^0.2.9",
     "vue-router": "^3.0.1",
     "vue2-editor": "^2.6.6",

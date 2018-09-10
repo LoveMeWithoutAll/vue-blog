@@ -29,6 +29,7 @@
         </v-layout>
       </div>
     </v-card>
+    <disqus></disqus>
   </v-flex>
 
 </template>
@@ -38,8 +39,12 @@ import { mapGetters, mapMutations } from 'vuex'
 import * as types from '@/vuex/mutation_types'
 import { firestore } from '@/firebase/firestore'
 import _ from 'lodash'
+import Disqus from './Disqus'
 
 export default {
+  components: {
+    Disqus
+  },
   computed: {
     ...mapGetters([
       'getKey',
