@@ -25,10 +25,15 @@
       <div v-if="getUser">
         <v-layout align-center justify-end row fill-height>
           <v-btn @click="update">edit</v-btn>
-          <v-btn @click="makeHidden">delete</v-btn>
+          <v-btn @click="showDelDialog(true)">delete</v-btn>
         </v-layout>
       </div>
     </v-card>
+    <delete-dialog
+      :openDelDialog="openDelDialog"
+      v-on:showDelDialog="showDelDialog"
+    >
+    </delete-dialog>
     <disqus></disqus>
   </v-flex>
 
@@ -40,10 +45,12 @@ import * as types from '@/vuex/mutation_types'
 import { firestore } from '@/firebase/firestore'
 import _ from 'lodash'
 import Disqus from './Disqus'
+import deleteDialog from './DeleteDialog'
 
 export default {
   components: {
-    Disqus
+    Disqus,
+    deleteDialog
   },
   computed: {
     ...mapGetters([
@@ -59,6 +66,11 @@ export default {
       return _.replace(this.getContent, new RegExp('img src', 'g'), 'img width="100%" src')
     }
   },
+  data () {
+    return {
+      openDelDialog: false
+    }
+  },
   created () {
     if (this.getKey === '') this.getPost()
   },
@@ -71,20 +83,6 @@ export default {
       setImgUrl: types.SET_IMG_URL}),
     update () {
       this.$router.push('/updater')
-    },
-    makeHidden () {
-      firestore
-        .collection('Post')
-        .doc(this.getKey)
-        .update({
-          show: false
-        })
-        .then(() => {
-          this.$router.push('/')
-        })
-        .catch((error) => {
-          console.error('Error on remove: ', error)
-        })
     },
     getPost () {
       firestore
@@ -103,6 +101,9 @@ export default {
         .catch(error => {
           console.error(`getPost error: ${error}`)
         })
+    },
+    showDelDialog (v) {
+      this.openDelDialog = v
     }
   }
 }
