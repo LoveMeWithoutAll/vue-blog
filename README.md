@@ -9,7 +9,7 @@
 1. [Vue.js]: Frontend Framework
 1. [Firebase]: Database, storage, Serverless FaaS, Auth
 1. [Vuetify]: UI Framework
-1. [Quill]: editor
+1. [Quill]: texgt editor
 1. [Disqus]: comment & reply
 
 ## If you want to fork and use
@@ -19,7 +19,7 @@
 1. Start [firebase] Authentication, Database(Cloud Firestore), Storage, Hosting, Functions
 1. Add test user by email/password
 1. Set test users' display name
-1. firebase init(No overwrite jsons of firebase) on cli
+1. firebase init(No overwrite jsons of firebase)
 1. Set firebase your credential on [src/firebase/credentials.js](https://github.com/LoveMeWithoutAll/book-blog/blob/master/src/firebase/credentials.js) by firebase
 1. Set your project ID on [.firebasercc](https://github.com/LoveMeWithoutAll/book-blog/blob/master/.firebaserc) by firebase project ID
 1. Set [Disqus] short name on [src/components/Disqus.vue](https://github.com/LoveMeWithoutAll/book-blog/blob/master/src/components/Disqus.vue): line 3
