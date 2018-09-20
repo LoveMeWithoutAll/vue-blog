@@ -10,14 +10,14 @@
 1. [Firebase]: Database, Storage, Serverless Function as a service, Auth
 1. [Vuetify]: UI Framework
 1. [Quill]: Text editor
-1. [Disqus]: Reply
+1. [Disqus]: Comment & Reply
 
 ## If you want to fork and use
 
 1. Fork & Clone
 1. Start [firebase] project
 1. Start [firebase] Authentication, Database(Cloud Firestore), Storage, Hosting, Functions
-1. Add test user by email/password
+1. Add test user by email/password on firebase console
 1. Set test users' display name
 1. firebase init(using [firebase cli] & No overwrite jsons of firebase)
 1. Set firebase your credential on [src/firebase/credentials.js](https://github.com/LoveMeWithoutAll/book-blog/blob/master/src/firebase/credentials.js) by firebase
