@@ -23,6 +23,7 @@
 1. Set firebase your credential on [src/firebase/credentials.js](https://github.com/LoveMeWithoutAll/book-blog/blob/master/src/firebase/credentials.js) by firebase
 1. Set your project ID on [.firebasercc](https://github.com/LoveMeWithoutAll/book-blog/blob/master/.firebaserc) by firebase project ID
 1. Set [Disqus] short name on [src/components/Disqus.vue](https://github.com/LoveMeWithoutAll/book-blog/blob/master/src/components/Disqus.vue): line 3
+1. Set [Google Analytics]((https://analytics.google.com/)) on [public/index.html](https://github.com/LoveMeWithoutAll/book-blog/blob/master/public/index.html)
 1. Naming on [src/components/Nav.vue](https://github.com/LoveMeWithoutAll/book-blog/blob/master/src/components/Nav.vue): line 7 ~ 11
 1. Naming title on [public/index.html](https://github.com/LoveMeWithoutAll/book-blog/blob/master/public/index.html): line 9
 1. npm run lint --fix
