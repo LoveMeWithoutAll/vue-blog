@@ -75,12 +75,12 @@ export default {
     if (this.getKey === '') this.getPost()
   },
   methods: {
-    ...mapMutations({setKey: types.SET_KEY,
+    ...mapMutations({ setKey: types.SET_KEY,
       setTitle: types.SET_TITLE,
       setContent: types.SET_CONTENT,
       setDate: types.SET_DATE,
       setWriter: types.SET_WRITER,
-      setImgUrl: types.SET_IMG_URL}),
+      setImgUrl: types.SET_IMG_URL }),
     update () {
       this.$router.push('/updater')
     },
