@@ -24,7 +24,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({user: 'getUser'})
+    ...mapGetters({ user: 'getUser' })
   },
   methods: {
     signIn () {
