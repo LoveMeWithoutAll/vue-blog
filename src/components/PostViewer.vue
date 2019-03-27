@@ -87,6 +87,7 @@ export default {
     getPost () {
       firestore
         .collection('Post')
+        .where('show', '==', true)
         .doc(this.$route.params.key)
         .get()
         .then(doc => {

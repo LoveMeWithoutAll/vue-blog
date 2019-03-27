@@ -1,7 +1,22 @@
 {
   "name": "book-blog",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.4.11",
+  "description": "Blog using Vue.js and Firebase",
+  "homepage": "https://lovemewithoutall.github.io",
+  "bugs": {
+    "url": "https://github.com/LoveMeWithoutAll/book-blog/issues",
+    "email": "ys.ahn@outlook.com"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Ahn Young Seon",
+    "email": "ys.ahn@outlook.com",
+    "url": "https://lovemewithoutall.github.io"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LoveMeWithoutAll/book-blog"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
