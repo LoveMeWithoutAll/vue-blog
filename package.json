@@ -1,6 +1,6 @@
 {
   "name": "book-blog",
-  "version": "0.4.12",
+  "version": "0.4.13",
   "description": "Blog using Vue.js and Firebase",
   "homepage": "https://lovemewithoutall.github.io",
   "bugs": {
@@ -23,24 +23,24 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "firebase": "^5.7.3",
+    "firebase": "^5.9.2",
     "lodash": "^4.17.11",
-    "vue": "^2.5.22",
+    "vue": "^2.6.10",
     "vue-disqus": "^3.0.5",
     "vue-firestore": "^0.2.11",
     "vue-router": "^3.0.2",
     "vue2-editor": "^2.6.6",
-    "vuetify": "^1.4.1",
-    "vuex": "^3.0.1"
+    "vuetify": "^1.5.9",
+    "vuex": "^3.1.0"
   },
   "devDependencies": {
-    "@babel/polyfill": "^7.2.5",
-    "@vue/cli-plugin-babel": "^3.3.0",
-    "@vue/cli-plugin-eslint": "^3.3.0",
-    "@vue/cli-service": "^3.3.0",
+    "@babel/polyfill": "^7.4.3",
+    "@vue/cli-plugin-babel": "^3.5.5",
+    "@vue/cli-plugin-eslint": "^3.5.1",
+    "@vue/cli-service": "^3.5.3",
     "@vue/eslint-config-standard": "^3.0.5",
     "vue-cli-plugin-vuetify": "^0.1.6",
-    "vue-template-compiler": "^2.5.22"
+    "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {
     "root": true,
