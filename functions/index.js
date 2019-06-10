@@ -7,7 +7,7 @@ const os = require('os')
 const fs = require('fs')
 const storage = new Storage()
 
-exports.rotateUsingExif = functions.storage.object().onFinalize((object) => {
+exports.rotateUsingExif = functions.storage.object().onFinalize(async (object) => {
   const filePath = object.name
   const bucketName = object.bucket
   const metadata = object.metadata

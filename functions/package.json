@@ -9,6 +9,7 @@
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log"
   },
+  "engines": { "node": "8" },
   "dependencies": {
     "@google-cloud/storage": "^2.5.0",
     "child-process-promise": "^2.2.1",
