@@ -1,7 +1,7 @@
 <template>
   <v-flex xs12 md7 offset-md1>
     <v-card>
-      <v-card-media
+      <v-img
         class="white--text"
         height="300px"
         :src="getImgUrl"
