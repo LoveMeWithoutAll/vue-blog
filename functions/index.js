@@ -1,19 +1,20 @@
 const functions = require('firebase-functions')
 const mkdirp = require('mkdirp-promise')
-const gcs = require('@google-cloud/storage')()
+const { Storage } = require('@google-cloud/storage')
 const spawn = require('child-process-promise').spawn
 const path = require('path')
 const os = require('os')
 const fs = require('fs')
+const storage = new Storage()
 
-exports.rotateUsingExif = functions.storage.object().onFinalize((object) => {
+exports.rotateUsingExif = functions.storage.object().onFinalize(async (object) => {
   const filePath = object.name
   const bucketName = object.bucket
   const metadata = object.metadata
 
   const tempLocalFile = path.join(os.tmpdir(), filePath)
   const tempLocalDir = path.dirname(tempLocalFile)
-  const bucket = gcs.bucket(bucketName)
+  const bucket = storage.bucket(bucketName)
 
   if (!object.contentType.startsWith('image/')) {
     console.log('This is not an image.')
