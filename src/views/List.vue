@@ -2,7 +2,7 @@
   <v-flex xs12 md5 offset-md2>
     <div v-for="(Post, idx) in Posts" :key="idx">
       <v-card class="my-3" hover>
-        <v-card-media
+        <v-img
           class="white--text"
           height="170px"
           :src="Post.imgUrl"
@@ -14,7 +14,7 @@
               </v-flex>
             </v-layout>
           </v-container>
-        </v-card-media>
+        </v-img>
         <v-card-text>
           <span v-html="truncateString(Post.content)"></span>
         </v-card-text>
