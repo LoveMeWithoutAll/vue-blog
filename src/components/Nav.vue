@@ -4,7 +4,7 @@
       <v-avatar size="125px">
         <img
           class="img-circle elevation-7 mb-1"
-          src="https://lovemewithoutall.github.io/assets/images/binary.jpg"
+          src="/img/profile-lying-cat.jpg"
         >
       </v-avatar>
       <div class="headline">Book, Cook & <span style="font-weight:bold">Spook</span></div>
