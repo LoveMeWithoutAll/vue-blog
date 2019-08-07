@@ -17,7 +17,7 @@
       ref="uploadInput"
       accept="image/*"
       :multiple="false"
-      @change="detectFiles($event)" />
+      @input="detectFiles($event)" />
       <v-progress-circular
         v-if="uploading && !uploadEnd"
         :size="100"
@@ -86,6 +86,7 @@ export default {
       } else {
         this.deleteImgOnUpdate()
       }
+      this.$refs.uploadInput.value = ''
     },
     setCoverImgOnUpdate () {
       this.uploadEnd = true
