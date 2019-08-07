@@ -1,6 +1,6 @@
 {
   "name": "book-blog",
-  "version": "0.4.14",
+  "version": "0.4.16",
   "description": "Blog using Vue.js and Firebase",
   "homepage": "https://lovemewithoutall.github.io",
   "bugs": {
