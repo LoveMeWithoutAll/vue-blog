@@ -10,7 +10,8 @@
           add_a_photo
         </v-icon>
     </v-btn>
-    <input
+    <form ref="form">
+      <input
       id="files"
       type="file"
       name="file"
@@ -18,6 +19,7 @@
       accept="image/*"
       :multiple="false"
       @change="detectFiles($event)" />
+    </form>
       <v-progress-circular
         v-if="uploading && !uploadEnd"
         :size="100"
@@ -86,6 +88,7 @@ export default {
       } else {
         this.deleteImgOnUpdate()
       }
+      this.$refs.form.reset()
     },
     setCoverImgOnUpdate () {
       this.uploadEnd = true
