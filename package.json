@@ -22,7 +22,9 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
-  "engines": { "node": "10" },
+  "engines": {
+    "node": "10"
+  },
   "dependencies": {
     "firebase": "^5.11.1",
     "lodash": "^4.17.13",
