@@ -1,5 +1,5 @@
 <template>
-  <v-flex xs12 md7 offset-md1>
+  <v-col cols="12" md="7" offset-md="1">
     <v-card>
       <v-img
         class="white--text"
@@ -22,11 +22,11 @@
         <b>Writer: </b>
         <span>{{ getWriter }}</span>
       </v-card-text>
-      <div v-if="getUser">
-        <v-layout align-center justify-end row fill-height>
-          <v-btn @click="update">edit</v-btn>
-          <v-btn @click="showDelDialog(true)">delete</v-btn>
-        </v-layout>
+      <div v-if="getUser" class="pa-3">
+        <v-row class="fill-height" align="center" justify="end"  >
+          <v-btn @click="update" class="ma-2">edit</v-btn>
+          <v-btn @click="showDelDialog(true)" class="ma-2">delete</v-btn>
+        </v-row>
       </div>
     </v-card>
     <delete-dialog
@@ -34,8 +34,8 @@
       v-on:showDelDialog="showDelDialog"
     >
     </delete-dialog>
-    <disqus></disqus>
-  </v-flex>
+    <disqus class="ma-3"/>
+  </v-col>
 
 </template>
 

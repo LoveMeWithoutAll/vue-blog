@@ -1,5 +1,5 @@
 <template>
-  <v-flex xs12 md7 offset-md1>
+  <v-col cols="12" md="7" offset-md="1">
     <div class="login">
       <h3>LOG IN</h3>
       <v-form>
@@ -8,7 +8,7 @@
       </v-form>
       <v-btn v-on:click="signIn">Connection</v-btn>
     </div>
-  </v-flex>
+  </v-col>
 </template>
 
 <script>
