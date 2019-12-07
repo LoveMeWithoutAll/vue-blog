@@ -9,14 +9,14 @@
         <v-spacer></v-spacer>
         <v-btn
           color="red darken-1"
-          flat="flat"
+          text
           @click="makeHidden()"
         >
           Delete!
         </v-btn>
         <v-btn
           color="green darken-1"
-          flat="flat"
+          text
           @click="hideDeleteDialog"
         >
           NO. WAIT

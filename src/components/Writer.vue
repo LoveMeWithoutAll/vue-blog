@@ -1,23 +1,23 @@
 <template>
-  <v-flex xs12 md7 offset-md1>
+  <v-col cols="12" md="7" offset-md="1">
     <v-form>
       <v-text-field
         v-model="title"
         label="Title"
         required>
       </v-text-field>
-      <file-uploader v-on:downloadURL="getDownloadUrl" v-bind:oldImgUrl="oldImgUrl" class="mb-4"></file-uploader>
+      <file-uploader v-on:downloadURL="getDownloadUrl" v-bind:oldImgUrl="oldImgUrl" class="mb-4"/>
     </v-form>
     <vue-editor
-      id="writer"
-      v-model="content"
-      useCustomImageHandler
-      @imageAdded="handleImageAdded"
-    ></vue-editor>
-    <v-layout align-center justify-end row fill-height>
+        id="writer"
+        v-model="content"
+        useCustomImageHandler
+        @imageAdded="handleImageAdded"
+    />
+    <v-row class="fill-height ma-3" align="center" justify="end">
       <v-btn @click="savePost">save</v-btn>
-    </v-layout>
-  </v-flex>
+    </v-row>
+  </v-col>
 </template>
 
 <script>

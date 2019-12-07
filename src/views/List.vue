@@ -1,5 +1,5 @@
 <template>
-  <v-flex xs12 md5 offset-md2>
+  <v-col cols="12" md="5" offset-md="2">
     <div v-for="(Post, idx) in Posts" :key="idx">
       <v-card class="my-3" hover>
         <v-img
@@ -7,12 +7,12 @@
           height="170px"
           :src="Post.imgUrl"
         >
-          <v-container fill-height fluid>
-            <v-layout>
-              <v-flex xs12 align-end d-flex>
+          <v-container class="fill-height" fluid>
+            <v-row>
+              <v-col class="align-end d-flex" cols="12" >
                 <span class="headline">{{ Post.title }}</span>
-              </v-flex>
-            </v-layout>
+              </v-col>
+            </v-row>
           </v-container>
         </v-img>
         <v-card-text>
@@ -20,11 +20,11 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn @click="viewPost(Post)" flat class="blue--text">Read More</v-btn>
+          <v-btn @click="viewPost(Post)" text class="blue--text">Read More</v-btn>
         </v-card-actions>
       </v-card>
     </div>
-  </v-flex>
+  </v-col>
 </template>
 
 <script>

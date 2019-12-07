@@ -1,6 +1,6 @@
 <template>
-  <v-flex xs12 md4>
-    <div class="text-xs-center">
+  <v-col cols="12" md="4">
+    <div class="text-center">
       <v-avatar size="125px">
         <img
           class="img-circle elevation-7 mb-1"
@@ -8,16 +8,16 @@
         >
       </v-avatar>
       <div class="headline">Book, Cook & <span style="font-weight:bold">Spook</span></div>
-      <div class="subheading text-xs-center grey--text pt-1 pb-3">All we read and cooked</div>
-      <v-layout justify-space-between class="mb-5">
-        <router-link to="/" class="body-2">Home</router-link>
-        <router-link to="/about" class="body-2">About</router-link>
-        <router-link v-if="getUser" to="/writer" class="body-2">Write</router-link>
-        <router-link v-if="!getUser" to="/login" class="body-2">Login</router-link>
-        <a v-if="getUser" @click="signOut" class="body-2">Logout</a>
-      </v-layout>
+      <div class="subheading text-center grey--text pt-1 pb-3">All we read and cooked</div>
+      <v-row justify="space-between" class="pa-5">
+        <router-link to="/" class="body-2 font-weight-bold">Home</router-link>
+        <router-link to="/about" class="body-2 font-weight-bold">About</router-link>
+        <router-link v-if="getUser" to="/writer" class="body-2 font-weight-bold">Write</router-link>
+        <router-link v-if="!getUser" to="/login" class="body-2 font-weight-bold">Login</router-link>
+        <a v-if="getUser" @click="signOut" class="body-2 font-weight-bold">Logout</a>
+      </v-row>
     </div>
-  </v-flex>
+  </v-col>
 </template>
 
 <script>
