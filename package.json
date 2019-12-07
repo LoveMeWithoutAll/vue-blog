@@ -2,30 +2,18 @@
   "name": "book-blog",
   "version": "0.4.17",
   "description": "Blog using Vue.js and Firebase",
-  "homepage": "https://lovemewithoutall.github.io",
-  "bugs": {
-    "url": "https://github.com/LoveMeWithoutAll/book-blog/issues",
-    "email": "ys.ahn@outlook.com"
-  },
-  "license": "MIT",
   "author": {
     "name": "Ahn Young Seon",
     "email": "ys.ahn@outlook.com",
     "url": "https://lovemewithoutall.github.io"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/LoveMeWithoutAll/book-blog"
   },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
-  "engines": {
-    "node": "10"
-  },
   "dependencies": {
+    "core-js": "^3.4.3",
     "firebase": "^7.5.2",
     "lodash": "^4.17.15",
     "vue": "^2.6.10",
@@ -38,11 +26,14 @@
   },
   "devDependencies": {
     "@babel/polyfill": "^7.7.0",
-    "@vue/cli-plugin-babel": "^3.12.1",
-    "@vue/cli-plugin-eslint": "^3.12.1",
-    "@vue/cli-service": "^3.12.1",
+    "@vue/cli-plugin-babel": "^4.1.1",
+    "@vue/cli-plugin-eslint": "^4.1.1",
+    "@vue/cli-service": "^4.1.1",
     "@vue/eslint-config-standard": "^3.0.5",
-    "vue-cli-plugin-vuetify": "^0.1.6",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^4.19.1",
+    "eslint-plugin-vue": "^6.0.1",
+    "vue-cli-plugin-vuetify": "^2.0.2",
     "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {
@@ -68,5 +59,18 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "bugs": {
+    "url": "https://github.com/LoveMeWithoutAll/book-blog/issues",
+    "email": "ys.ahn@outlook.com"
+  },
+  "engines": {
+    "node": "10"
+  },
+  "homepage": "https://lovemewithoutall.github.io",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LoveMeWithoutAll/book-blog"
+  }
 }
