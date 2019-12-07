@@ -3,8 +3,8 @@
     <div class="login">
       <h3>LOG IN</h3>
       <v-form>
-        <v-text-field type="text" v-model="email" placeholder="Email"></v-text-field>
-        <v-text-field type="password" v-model="password" placeholder="Password"></v-text-field>
+        <v-text-field type="text" v-model="email" placeholder="Email"/>
+        <v-text-field type="password" v-model="password" placeholder="Password" v-on:keyup.enter="signIn"/>
       </v-form>
       <v-btn v-on:click="signIn" large>Login</v-btn>
     </div>
