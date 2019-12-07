@@ -31,7 +31,7 @@ export default {
     ...mapActions(['logout']),
     signOut () {
       this.logout()
-      this.$router.replace('/')
+      if (this.$route.path !== '/') this.$router.replace('/')
     }
   }
 }
