@@ -1,14 +1,14 @@
 <template>
-  <v-flex xs12 md7 offset-md1>
+  <v-col cols="12" md="7" offset-md="1">
     <div class="login">
       <h3>LOG IN</h3>
       <v-form>
-        <v-text-field type="text" v-model="email" placeholder="Email"></v-text-field>
-        <v-text-field type="password" v-model="password" placeholder="Password"></v-text-field>
+        <v-text-field type="text" v-model="email" placeholder="Email"/>
+        <v-text-field type="password" v-model="password" placeholder="Password" v-on:keyup.enter="signIn"/>
       </v-form>
-      <v-btn v-on:click="signIn">Connection</v-btn>
+      <v-btn v-on:click="signIn" large>Login</v-btn>
     </div>
-  </v-flex>
+  </v-col>
 </template>
 
 <script>

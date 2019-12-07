@@ -1,7 +1,7 @@
 <template>
-  <v-flex xs12 md5 offset-md2>
-    <h1 class="text-xs-center">This is an about page</h1>
-  </v-flex>
+  <v-col cols="12" md="5" offset-md="2">
+    <h1 class="text-center">This is an about page</h1>
+  </v-col>
 </template>
 
 <script>

@@ -2,12 +2,12 @@
   <v-app light>
     <v-content>
       <v-container>
-        <v-layout row wrap align-center>
+        <v-row align="center">
           <Nav></Nav>
           <transition name="fade">
             <router-view/>
           </transition>
-        </v-layout>
+        </v-row>
       </v-container>
     </v-content>
     <v-footer>
