@@ -88,16 +88,17 @@ export default {
       firestore
         .collection('Post')
         .where('show', '==', true)
-        .doc(this.$route.params.key)
         .get()
-        .then(doc => {
-          let post = doc.data()
-          this.setKey(this.$route.params.key)
-          this.setTitle(post.title)
-          this.setContent(post.content)
-          this.setDate(post.date.seconds)
-          this.setWriter(post.writer)
-          this.setImgUrl(post.imgUrl)
+        .then(querySnapshot => {
+          querySnapshot.forEach(doc => {
+            let post = doc.data()
+            this.setKey(this.$route.params.key)
+            this.setTitle(post.title)
+            this.setContent(post.content)
+            this.setDate(post.date.seconds)
+            this.setWriter(post.writer)
+            this.setImgUrl(post.imgUrl)
+          })
         })
         .catch(error => {
           console.error(`getPost error: ${error}`)
