@@ -31,12 +31,14 @@ export default {
     ...mapActions(['logout']),
     signOut () {
       this.logout()
-      this.$router.replace('/')
+      if (this.$route.path !== '/') this.$router.replace('/')
     }
   }
 }
 </script>
 
 <style scoped>
-
+a {
+  text-decoration: none;
+}
 </style>
