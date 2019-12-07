@@ -1,6 +1,6 @@
 {
   "name": "book-blog",
-  "version": "0.4.17",
+  "version": "0.5.0",
   "description": "Blog using Vue.js and Firebase",
   "author": {
     "name": "Ahn Young Seon",
