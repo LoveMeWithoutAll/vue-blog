@@ -1,5 +1,8 @@
 # Concrete cutover and recovery gate
 
+This bundle was approved and completed2026-10-18. The following retains the exact
+scope presented before execution. See CUTOVER_RESULT.md for observed outcomes.
+
 ## Removal targets (not executed)
 1. Uninstall only Extension instance
    projects/book-blog-with-largo/instances/storage-resize-images, version0.1.5.

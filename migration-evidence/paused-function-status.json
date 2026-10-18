@@ -4,6 +4,6 @@
   "service": "projects/book-blog-with-largo/locations/us-central1/services/processblogimage",
   "serviceAccount": "blog-image-pipeline@book-blog-with-largo.iam.gserviceaccount.com",
   "uri": "https://processblogimage-yuxlydmcuq-uc.a.run.app",
-  "paused": "true",
-  "build": "projects/861459209119/locations/us-central1/builds/6319c472-6dd6-41b9-b129-4716cba3ccc1"
+  "paused": "false",
+  "build": "projects/861459209119/locations/us-central1/builds/42337bf2-f4cb-45cf-9c02-ee8ef8c61af2"
 }

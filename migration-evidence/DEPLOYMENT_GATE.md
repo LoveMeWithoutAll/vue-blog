@@ -1,6 +1,16 @@
 # Deployment gate — 2026-10-18
 
-## Current state (supersedes historical approval gates below)
+## Final outcome
+The final cutover bundle was explicitly approved and executed. Both old function
+resources, extension instance and its dedicated account are absent. processBlogImage
+is ACTIVE/paused=false/maxInstances3/minInstances0/concurrency1. Synthetic image
+upload and overwrite tests passed; source URLs retained, thumbnails independent,
+test paths removed. Existing122objects/171443020bytes unchanged; homepage200.
+One guarded Storage precondition race returned500 during the test; backlog and
+oldest unacked age subsequently0, latest minute error count0. See CUTOVER_RESULT.md.
+Uploads may resume. Earlier approval-gate text below is historical.
+
+## Prior paused verification state
 Paused deployment is complete. processBlogImage/us-central1 is ACTIVE; separate
 Eventarc trigger blog-image-finalized/us is ready. Named/scoped IAM and the
 separately approved project Storage Publisher grant are verified. No project-wide

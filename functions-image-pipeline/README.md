@@ -1,12 +1,15 @@
-# Image pipeline migration (deployed paused; cutover pending)
+# Image pipeline migration (production cutover complete)
 
 The new processBlogImage function is deployed in us-central1 with image processing
-paused. A separately managed Eventarc trigger blog-image-finalized in us delivers
+enabled, minInstances0/maxInstances3/concurrency1. A separately managed Eventarc trigger blog-image-finalized in us delivers
 bucket finalized events to its private Cloud Run service processblogimage.
 Functions API trigger metadata remains HTTP; runtime signature is cloudevent.
 Update the function and the separate Eventarc trigger explicitly through reviewed
 APIs, not firebase deploy. See ../migration-evidence/SCOPED_API_DEPLOYMENT.md.
-The two legacy image handlers remain active. Production cutover is not complete.
+The legacy storage-resize-images extension (including its managed function and
+account) and rotateUsingExif were removed with approval on2026-10-18.
+Production upload/overwrite, URL preservation, resize and cleanup tests passed.
+See ../migration-evidence/CUTOVER_RESULT.md for evidence and recovery instructions.
 
 This is a separate, self-managed Node.js 22 / Firebase Functions v2 codebase.
 The existing `functions/`, primary `firebase.json`, and frontend remain unchanged.

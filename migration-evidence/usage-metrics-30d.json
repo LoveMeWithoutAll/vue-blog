@@ -1,0 +1,341 @@
+{
+  "start": "2026-09-18T05:36:55.591Z",
+  "end": "2026-10-18T05:36:55.591Z",
+  "results": [
+    {
+      "type": "storage.googleapis.com/network/sent_bytes_count",
+      "truncated": false,
+      "series": [
+        {
+          "resource": {
+            "location": "us",
+            "project_id": "book-blog-with-largo",
+            "bucket_name": "book-blog-with-largo.appspot.com"
+          },
+          "metric": {
+            "method": "DeleteObject",
+            "response_code": "OK"
+          },
+          "points": [
+            {
+              "end": "2026-10-18T05:36:55.591Z",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "resource": {
+            "project_id": "book-blog-with-largo",
+            "bucket_name": "book-blog-with-largo.appspot.com",
+            "location": "us"
+          },
+          "metric": {
+            "response_code": "OK",
+            "method": "GetIamPolicy"
+          },
+          "points": [
+            {
+              "end": "2026-10-18T05:36:55.591Z",
+              "value": 1404
+            }
+          ]
+        },
+        {
+          "resource": {
+            "bucket_name": "book-blog-with-largo.appspot.com",
+            "location": "us",
+            "project_id": "book-blog-with-largo"
+          },
+          "metric": {
+            "method": "ListObjects",
+            "response_code": "OK"
+          },
+          "points": [
+            {
+              "end": "2026-10-18T05:36:55.591Z",
+              "value": 64
+            }
+          ]
+        },
+        {
+          "resource": {
+            "bucket_name": "book-blog-with-largo.appspot.com",
+            "location": "us",
+            "project_id": "book-blog-with-largo"
+          },
+          "metric": {
+            "method": "SetIamPolicy",
+            "response_code": "OK"
+          },
+          "points": [
+            {
+              "end": "2026-10-18T05:36:55.591Z",
+              "value": 788
+            }
+          ]
+        },
+        {
+          "resource": {
+            "project_id": "book-blog-with-largo",
+            "location": "us",
+            "bucket_name": "book-blog-with-largo.appspot.com"
+          },
+          "metric": {
+            "response_code": "OK",
+            "method": "WriteObject"
+          },
+          "points": [
+            {
+              "end": "2026-10-18T05:36:55.591Z",
+              "value": 2080
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "cloudfunctions.googleapis.com/function/execution_count",
+      "truncated": false,
+      "series": [
+        {
+          "resource": {
+            "function_name": "ext-storage-resize-images-generateResizedImage",
+            "region": "asia-northeast1",
+            "project_id": "book-blog-with-largo"
+          },
+          "metric": {
+            "memory": "1024",
+            "status": "ok",
+            "trigger_type": "google.storage.object.finalize"
+          },
+          "points": [
+            {
+              "end": "2026-10-18T05:36:55.591Z",
+              "value": 2
+            }
+          ]
+        },
+        {
+          "resource": {
+            "project_id": "book-blog-with-largo",
+            "function_name": "processBlogImage",
+            "region": "us-central1"
+          },
+          "metric": {
+            "status": "ok",
+            "trigger_type": "HTTP_TRIGGER",
+            "memory": "1073"
+          },
+          "points": [
+            {
+              "end": "2026-10-18T05:36:55.591Z",
+              "value": 2
+            }
+          ]
+        },
+        {
+          "resource": {
+            "region": "us-central1",
+            "project_id": "book-blog-with-largo",
+            "function_name": "rotateUsingExif"
+          },
+          "metric": {
+            "memory": "256",
+            "trigger_type": "google.storage.object.finalize",
+            "status": "ok"
+          },
+          "points": [
+            {
+              "end": "2026-10-18T05:36:55.591Z",
+              "value": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "run.googleapis.com/request_count",
+      "truncated": false,
+      "series": [
+        {
+          "resource": {
+            "revision_name": "processblogimage-00001-bop",
+            "location": "us-central1",
+            "service_name": "processblogimage",
+            "configuration_name": "processblogimage",
+            "project_id": "book-blog-with-largo"
+          },
+          "metric": {
+            "response_code": "200",
+            "response_code_class": "2xx",
+            "route": ""
+          },
+          "points": [
+            {
+              "end": "2026-10-18T05:36:55.591Z",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "resource": {
+            "service_name": "processblogimage",
+            "configuration_name": "processblogimage",
+            "project_id": "book-blog-with-largo",
+            "revision_name": "processblogimage-00002-riq",
+            "location": "us-central1"
+          },
+          "metric": {
+            "response_code": "200",
+            "route": "",
+            "response_code_class": "2xx"
+          },
+          "points": [
+            {
+              "end": "2026-10-18T05:36:55.591Z",
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "storage.googleapis.com/storage/total_bytes",
+      "truncated": false,
+      "series": [
+        {
+          "resource": {
+            "location": "us",
+            "project_id": "book-blog-with-largo",
+            "bucket_name": "book-blog-with-largo.appspot.com"
+          },
+          "metric": {
+            "storage_class": "MULTI_REGIONAL"
+          },
+          "points": [
+            {
+              "end": "2026-10-18T05:36:55.591Z",
+              "value": 171452385
+            },
+            {
+              "end": "2026-10-17T05:36:55.591Z",
+              "value": 171452385
+            },
+            {
+              "end": "2026-10-16T05:36:55.591Z",
+              "value": 171452385
+            },
+            {
+              "end": "2026-10-15T05:36:55.591Z",
+              "value": 171452385
+            },
+            {
+              "end": "2026-10-14T05:36:55.591Z",
+              "value": 171452385
+            },
+            {
+              "end": "2026-10-13T05:36:55.591Z",
+              "value": 171452385
+            },
+            {
+              "end": "2026-10-12T05:36:55.591Z",
+              "value": 171452385
+            },
+            {
+              "end": "2026-10-11T05:36:55.591Z",
+              "value": 171452385
+            },
+            {
+              "end": "2026-10-10T05:36:55.591Z",
+              "value": 171452385
+            },
+            {
+              "end": "2026-10-09T05:36:55.591Z",
+              "value": 171452385
+            },
+            {
+              "end": "2026-10-08T05:36:55.591Z",
+              "value": 171452385
+            },
+            {
+              "end": "2026-10-07T05:36:55.591Z",
+              "value": 171452385
+            },
+            {
+              "end": "2026-10-06T05:36:55.591Z",
+              "value": 171452385
+            },
+            {
+              "end": "2026-10-05T05:36:55.591Z",
+              "value": 171452385
+            },
+            {
+              "end": "2026-10-04T05:36:55.591Z",
+              "value": 171452385
+            },
+            {
+              "end": "2026-10-03T05:36:55.591Z",
+              "value": 171452385
+            },
+            {
+              "end": "2026-10-02T05:36:55.591Z",
+              "value": 171452385
+            },
+            {
+              "end": "2026-10-01T05:36:55.591Z",
+              "value": 171452385
+            },
+            {
+              "end": "2026-09-30T05:36:55.591Z",
+              "value": 171452385
+            },
+            {
+              "end": "2026-09-29T05:36:55.591Z",
+              "value": 171452385
+            },
+            {
+              "end": "2026-09-28T05:36:55.591Z",
+              "value": 171452385
+            },
+            {
+              "end": "2026-09-27T05:36:55.591Z",
+              "value": 171452385
+            },
+            {
+              "end": "2026-09-26T05:36:55.591Z",
+              "value": 171452385
+            },
+            {
+              "end": "2026-09-25T05:36:55.591Z",
+              "value": 171452385
+            },
+            {
+              "end": "2026-09-24T05:36:55.591Z",
+              "value": 171452385
+            },
+            {
+              "end": "2026-09-23T05:36:55.591Z",
+              "value": 171452385
+            },
+            {
+              "end": "2026-09-22T05:36:55.591Z",
+              "value": 171452385
+            },
+            {
+              "end": "2026-09-21T05:36:55.591Z",
+              "value": 171452385
+            },
+            {
+              "end": "2026-09-20T05:36:55.591Z",
+              "value": 171452385
+            },
+            {
+              "end": "2026-09-19T05:36:55.591Z",
+              "value": 171452385
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
