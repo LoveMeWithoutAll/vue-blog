@@ -1,0 +1,53 @@
+{
+  "name": "projects/book-blog-with-largo/instances/storage-resize-images",
+  "state": "ACTIVE",
+  "serviceAccountEmail": "ext-storage-resize-images@book-blog-with-largo.iam.gserviceaccount.com",
+  "extensionRef": "firebase/storage-resize-images",
+  "extensionVersion": "0.1.5",
+  "params": {
+    "DELETE_ORIGINAL_FILE": "false",
+    "LOCATION": "asia-northeast1",
+    "IMG_BUCKET": "book-blog-with-largo.appspot.com",
+    "IMG_SIZES": "500x500"
+  },
+  "parameterNames": [
+    "DELETE_ORIGINAL_FILE",
+    "LOCATION",
+    "IMG_BUCKET",
+    "IMG_SIZES"
+  ],
+  "specName": "storage-resize-images",
+  "resources": [
+    {
+      "name": "generateResizedImage",
+      "type": "firebaseextensions.v1beta.function"
+    }
+  ],
+  "roles": [
+    {
+      "role": "storage.admin",
+      "reason": "Allows the extension to store resized images in Cloud Storage"
+    }
+  ],
+  "secretParameterNames": [],
+  "specKeys": [
+    "specVersion",
+    "name",
+    "version",
+    "description",
+    "apis",
+    "roles",
+    "resources",
+    "author",
+    "contributors",
+    "license",
+    "releaseNotesUrl",
+    "sourceUrl",
+    "params",
+    "preinstallContent",
+    "postinstallContent",
+    "readmeContent",
+    "displayName",
+    "systemParams"
+  ]
+}

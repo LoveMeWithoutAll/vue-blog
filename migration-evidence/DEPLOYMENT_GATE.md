@@ -18,8 +18,10 @@ remove old processing. No historical backfill. Current maxInstances1 is for paus
 verification; select and document production capacity before switching.
 The exact deployed source ZIP is preserved outside the repository at
 ../image-pipeline-paused-recovery.zip; its SHA256 is in paused-create-request.json.
-This preserves an artifact proven to build/run/receive events, not a rehearsed
-production recovery after old-function retirement.
+Same-artifact redeployment was rehearsed successfully into revision
+processblogimage-00002-riq, with native conversion and actual paused event delivery
+verified. It is not a rollback to old Node8 or an end-to-end production image-write
+test. See CUTOVER_APPROVAL.md for exact limits, deletion scope and failure actions.
 
 ## Historical investigation notes
 
