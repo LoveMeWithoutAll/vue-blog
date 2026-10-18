@@ -1,0 +1,9 @@
+{
+  "name": "projects/book-blog-with-largo/locations/us-central1/functions/processBlogImage",
+  "state": "ACTIVE",
+  "service": "projects/book-blog-with-largo/locations/us-central1/services/processblogimage",
+  "serviceAccount": "blog-image-pipeline@book-blog-with-largo.iam.gserviceaccount.com",
+  "uri": "https://processblogimage-yuxlydmcuq-uc.a.run.app",
+  "paused": "true",
+  "build": "projects/861459209119/locations/us-central1/builds/53df9644-707c-4d69-8a29-bd82677654b9"
+}

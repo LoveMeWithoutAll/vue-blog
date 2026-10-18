@@ -1,0 +1,6 @@
+{
+  "principal": "serviceAccount:service-861459209119@gs-project-accounts.iam.gserviceaccount.com",
+  "role": "roles/pubsub.publisher",
+  "resource": "projects/book-blog-with-largo",
+  "verified": true
+}

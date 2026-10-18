@@ -1,9 +1,17 @@
-# Image pipeline migration (not deployed)
+# Image pipeline migration (deployed paused; cutover pending)
+
+The new processBlogImage function is deployed in us-central1 with image processing
+paused. A separately managed Eventarc trigger blog-image-finalized in us delivers
+bucket finalized events to its private Cloud Run service processblogimage.
+Functions API trigger metadata remains HTTP; runtime signature is cloudevent.
+Update the function and the separate Eventarc trigger explicitly through reviewed
+APIs, not firebase deploy. See ../migration-evidence/SCOPED_API_DEPLOYMENT.md.
+The two legacy image handlers remain active. Production cutover is not complete.
 
 This is a separate, self-managed Node.js 22 / Firebase Functions v2 codebase.
-The existing `functions/`, primary `firebase.json`, frontend, and production
-resources remain unchanged. Use `firebase.image-pipeline.json` only for an
-explicitly approved future staging/cutover deployment. There is no deploy script.
+The existing `functions/`, primary `firebase.json`, and frontend remain unchanged.
+The separate Firebase config documents the codebase and supports local checks;
+production updates use the reviewed scoped API procedure.
 
 ## Verified contract
 
@@ -17,7 +25,8 @@ metadata skips another rotation, matching the old custom function.
 Console inspection (2026-10-18) found `storage-resize-images` 0.1.5 in
 asia-northeast1, configured for 500x500, no output subfolder, no original deletion,
 and no cache override. Its deployed function and `rotateUsingExif` (us-central1)
-are both Node.js 8/v1 and subscribe to the same bucket. Billing is disabled.
+are both Node.js 8/v1 and subscribe to the same bucket. Blaze billing was enabled
+with approval and a KRW13,300 monthly alert (not a spending cap).
 
 The tagged upstream 0.1.5 implementation confirms same-directory
 `<stem>_500x500<extension>` names and aspect-preserving downscale without enlargement.
@@ -104,7 +113,7 @@ They do not substitute for a live staging Storage/Eventarc test.
 
 ## Configuration and deployment prerequisites (not executed)
 
-`IMAGE_BUCKET`, `IMAGE_REGION`, and `IMAGE_MAX_INSTANCES` are required parameters with no production
+`IMAGE_BUCKET`, `IMAGE_REGION`, `IMAGE_SERVICE_ACCOUNT`, and `IMAGE_MAX_INSTANCES` are required parameters with no production
 defaults. Verify actual bucket location before choosing the event trigger region;
 the legacy function region alone is insufficient. The selected runtime is Node 22;
 dependencies are pinned with a lockfile. Functions have 1 GiB memory, legacy-style
@@ -114,20 +123,20 @@ production cap is silently substituted. Capacity requires v2 quota/load review.
 Limits require
 load validation; no invocation or billing estimate was verified in this task.
 
-The code declares Storage API and `roles/storage.objectUser`. Firebase CLI may
-enable APIs/provision a service account and grant this role during deployment.
-Review project-level scope versus a bucket-scoped service account before approval.
-Build/Artifact Registry/Cloud Run/Eventarc service permissions and billing also
-need validation. No IAM or API changes have been made. Use a CLI supporting the
-declarative APIs (official migration guide specifies firebase-tools >=15.32.0).
+The code selects an explicit service account and makes no declarative IAM/API
+requests. The proposed account is blog-image-pipeline@book-blog-with-largo.iam.gserviceaccount.com;
+its creation and permissions remain subject to approval. Storage access is limited
+to the one image bucket. Do not run firebase deploy: CLI15.34.0 independently adds
+project-wide event-delivery bindings even with an explicit service account.
+Use the reviewed API sequence in ../migration-evidence/SCOPED_API_DEPLOYMENT.md.
+Blaze and the four deployment APIs/default service-agent roles are already enabled.
 
-1. Keep production billing unchanged until separately approved. Restoring billing
-   could resume the two old triggers, not merely enable the new codebase.
+1. Retain the approved billing alert and existing handlers during verification.
 2. Obtain deployed source/config snapshots and representative original/thumbnail
    metadata without exposing secrets. Resolve format/limit/URL compatibility gates.
-3. With approval, deploy only `image-pipeline` to a separate staging project/bucket
-   using the separate config; exercise real uploads, overwrites, retry behavior,
-   tokens, retention/versioning behavior, and native ImageMagick on Linux Node 22.
+3. After scoped IAM approval, deploy only the new paused function in the existing
+   project using the reviewed API sequence. Verify native ImageMagick on Linux
+   Node 22 without production object writes; then plan a controlled upload test.
 4. For separately approved production cutover, pause uploads and drain in-flight
    work. Record a narrow event boundary; do not schedule historical backfill.
    Disable/remove the old rotation function and extension only with explicit
@@ -141,3 +150,11 @@ declarative APIs (official migration guide specifies firebase-tools >=15.32.0).
    is not a viable rollback assumption; retain snapshots and the previous tested
    modern artifact. Never run an unscoped functions deployment from this migration
    config, or infer authorization to delete existing functions from a CLI prompt.
+
+## Deployment safety switch
+IMAGE_PROCESSING_PAUSED defaults to true. Paused events are acknowledged without
+Storage reads or writes; they will NOT replay automatically when unpaused. Keep
+legacy handlers active during paused runtime verification. For the local demo
+emulator integration only, explicitly set IMAGE_PROCESSING_PAUSED=false.
+Changing this parameter to false is the production cutover and must be coordinated
+with retiring the old writers and pausing all uploaders. No historical backfill.

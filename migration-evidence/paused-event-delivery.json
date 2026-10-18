@@ -1,0 +1,15 @@
+[
+  {
+    "timestamp": "2026-10-18T05:25:50.758281Z",
+    "severity": "INFO",
+    "revision": "processblogimage-00001-bop",
+    "message": "Image processing paused; existing handlers retain ownership",
+    "eventId": "22049283347497185"
+  },
+  {
+    "timestamp": "2026-10-18T05:25:50.712998Z",
+    "severity": "INFO",
+    "revision": "processblogimage-00001-bop",
+    "httpStatus": 200
+  }
+]

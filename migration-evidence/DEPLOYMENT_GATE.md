@@ -1,5 +1,28 @@
 # Deployment gate — 2026-10-18
 
+## Current state (supersedes historical approval gates below)
+Paused deployment is complete. processBlogImage/us-central1 is ACTIVE; separate
+Eventarc trigger blog-image-finalized/us is ready. Named/scoped IAM and the
+separately approved project Storage Publisher grant are verified. No project-wide
+Token Creator, Storage Object User or Run Invoker was added by this work.
+Native runtime verification passed in revision processblogimage-00001-bop:
+EXIF6 fixture ->600x800 original /375x500 thumbnail. Actual Storage text-probe
+delivery produced the paused log and HTTP200; its exact generation was cleaned up.
+Both legacy functions remain ACTIVE. See SCOPED_API_DEPLOYMENT.md and JSON evidence.
+
+Remaining gate: coordinated upload pause, cloud image read/write end-to-end
+verification without concurrent old writers, supported-runtime recovery rehearsal,
+then explicit authorization to retire the old rotation function and extension.
+Do not interpret a successful paused deployment as authorization to unpause or
+remove old processing. No historical backfill. Current maxInstances1 is for paused
+verification; select and document production capacity before switching.
+The exact deployed source ZIP is preserved outside the repository at
+../image-pipeline-paused-recovery.zip; its SHA256 is in paused-create-request.json.
+This preserves an artifact proven to build/run/receive events, not a rehearsed
+production recovery after old-function retirement.
+
+## Historical investigation notes
+
 Project: book-blog-with-largo (861459209119). CLI authenticated as
 lovemewithoutall@gmail.com; existing project role Owner. Blaze enabled with
 KRW13,300 monthly alert, no automatic shutdown. Bucket location US multi-region;
@@ -17,7 +40,25 @@ proposed function region us-central1, Eventarc bucket trigger location us.
   modern recovery candidate, NOT a cloud-proven rollback and NOT a restoration
   of Node8. pipeline.js SHA256 d5e479ddf67c5fc42b48f45ebe987f0c0290f55f22f84dbe97ccdb4649b97b75.
 
-## Why an ordinary deploy cannot proceed within current permission scope
+## Update after API approval
+The four APIs below are now enabled and their four Google-managed default
+service-agent roles are verified. See approved-api-enablement.json and
+approved-default-service-agents.json. No new image function has been deployed.
+The new entrypoint defaults to paused (only the literal string false enables
+processing), so a verification deployment can coexist with the old handlers
+without writing images. Lint and all 28 tests pass.
+
+Remaining consent is for additional execution/event-delivery IAM, beyond the
+four approved service-agent roles. Installed CLI15.34.0 automatically requests
+project-level storage.objectUser for its firebase-fn runtime account,
+pubsub.publisher for the Storage service agent, iam.serviceAccountTokenCreator
+for the Pub/Sub service agent, and run.invoker plus eventarc.eventReceiver for
+the default Compute service account on first v2 event integration. This exact
+behavior was checked in deploy/functions/prepare.js and checkIam.js. No such
+additional bindings were applied. A narrower explicit-account/bucket-scoped
+alternative would require changing the declarative-IAM deployment design.
+
+## Initial finding (superseded for the four API/default-role approvals)
 Enabled-services inventory lacks run.googleapis.com, eventarc.googleapis.com,
 cloudbuild.googleapis.com and artifactregistry.googleapis.com. New function is
 2nd gen and requires these APIs. Enabling them provisions Google service identities

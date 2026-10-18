@@ -1,0 +1,7 @@
+{
+  "resource": "projects/book-blog-with-largo/locations/us-central1/services/processblogimage",
+  "role": "roles/run.invoker",
+  "principal": "serviceAccount:blog-image-pipeline@book-blog-with-largo.iam.gserviceaccount.com",
+  "verified": true,
+  "publicInvoker": false
+}

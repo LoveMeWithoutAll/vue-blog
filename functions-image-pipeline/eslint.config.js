@@ -4,6 +4,6 @@ module.exports = [js.configs.recommended, {
   languageOptions: {
     ecmaVersion: 2022,
     sourceType: 'commonjs',
-    globals: { Buffer: 'readonly', console: 'readonly', structuredClone: 'readonly' }
+    globals: { Buffer: 'readonly', console: 'readonly', structuredClone: 'readonly', __dirname: 'readonly' }
   }
 }]
