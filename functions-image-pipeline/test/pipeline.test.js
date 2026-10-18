@@ -46,6 +46,7 @@ async function png (width = 800, height = 400) {
 test('legacy names preserve directories, dots, extensionless and Unicode names', () => {
   assert.equal(outputName('images/a.b.jpg'), 'images/a.b_500x500.jpg')
   assert.equal(outputName('images/책'), 'images/책_500x500')
+  assert.equal(outputName('images/sub/../a.png'), 'images/a_500x500.png')
 })
 
 test('real EXIF rotation normalizes original and then resizes within 500x500', async () => {
@@ -171,6 +172,34 @@ test('newer generation thumbnail cannot be replaced by delayed old event', async
   assert.equal((await store.head('test', 'photo_500x500.png')).metadata.blogPipelineSourceGeneration, fresh.generation)
 })
 
+test('same-name reupload refreshes both images and retains their independent tokens', async () => {
+  const store = fakeStore()
+  const handler = createHandler(store)
+  const first = store.put('photo.png', await png(), { firebaseStorageDownloadTokens: 'original-one' })
+  await handler(first)
+  store.files.get('test/photo_500x500.png').object.metadata.firebaseStorageDownloadTokens = 'derivative-token'
+  const second = store.put('photo.png', await png(600, 900), { firebaseStorageDownloadTokens: 'original-two' })
+  await handler(second)
+  const original = await store.head('test', 'photo.png')
+  const thumbnail = await store.head('test', 'photo_500x500.png')
+  assert.equal(original.metadata.firebaseStorageDownloadTokens, 'original-two')
+  assert.equal(thumbnail.metadata.firebaseStorageDownloadTokens, 'derivative-token')
+  assert.equal(thumbnail.metadata.blogPipelineSourceGeneration, original.generation)
+  const dimensions = await sharp(store.files.get('test/photo_500x500.png').data).metadata()
+  assert.equal(dimensions.width, 333)
+  assert.equal(dimensions.height, 500)
+  assert.equal(await handler(first), 'stale')
+})
+
+test('suffix alone does not exclude legitimate source images; derivative metadata does', async () => {
+  const store = fakeStore()
+  const source = store.put('my_500x500.png', await png())
+  const handler = createHandler(store)
+  assert.equal(await handler(source), 'processed')
+  const derivative = await store.head('test', 'my_500x500_500x500.png')
+  assert.equal(await handler(derivative), 'thumbnail')
+})
+
 test('source metadata edit during processing is not silently overwritten', async () => {
   const store = fakeStore()
   const event = store.put('photo.png', await png())
@@ -242,17 +271,19 @@ test('skip non-images, missing MIME and derivative events; never enumerate histo
   assert.equal((await store.head('test', historical.name)).generation, historical.generation)
 })
 
-test('reject path collision, oversize, corrupt input and unsupported formats without writes', async () => {
+test('reject path collision and corrupt input without writes', async () => {
   const store = fakeStore()
   const handler = createHandler(store)
   store.put('photo_500x500.png', await png())
   const event = store.put('photo.png', await png())
   await assert.rejects(handler(event), /collides/)
-  const huge = store.put('huge.png', await png(), {}, { size: String(26 * 1024 * 1024) })
-  await assert.rejects(handler(huge), /25 MiB/)
   const corrupt = store.put('bad.png', Buffer.from('not an image'))
   await assert.rejects(handler(corrupt))
-  const gif = await sharp(await png()).gif().toBuffer()
-  await assert.rejects(transform(gif, true), /Unsupported image/)
   assert.deepEqual(store.writes, [])
+})
+
+test('no new 25 MiB admission limit is imposed on metadata size', async () => {
+  const store = fakeStore()
+  const event = store.put('large.png', await png(), {}, { size: String(26 * 1024 * 1024) })
+  assert.equal(await createHandler(store)(event), 'processed')
 })

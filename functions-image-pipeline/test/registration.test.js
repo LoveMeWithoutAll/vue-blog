@@ -11,6 +11,7 @@ test('only a new isolated v2 function is exported, with required bucket and regi
   assert.equal(endpoint.region, 'params.IMAGE_REGION')
   assert.equal(endpoint.eventTrigger.retry, true)
   assert.equal(endpoint.concurrency, 1)
+  assert.equal(endpoint.maxInstances, 'params.IMAGE_MAX_INSTANCES')
   const config = require('../../firebase.image-pipeline.json')
   assert.equal(config.functions.length, 1)
   assert.equal(config.functions[0].codebase, 'image-pipeline')

@@ -21,6 +21,8 @@ are both Node.js 8/v1 and subscribe to the same bucket. Billing is disabled.
 
 The tagged upstream 0.1.5 implementation confirms same-directory
 `<stem>_500x500<extension>` names and aspect-preserving downscale without enlargement.
+Its validator accepts all `image/*`, as does the cover uploader; neither the
+uploader nor Storage rules imposes the proposed 25 MiB / 40 MP limits.
 This implementation retains those paths and dimensions; originals are never
 deleted. It preserves Storage content type, disposition, language, cache control,
 and custom metadata. A derivative never receives the original download token.
@@ -63,27 +65,36 @@ npm run lint
 npm test
 ```
 
-The tests use generated real JPEG/PNG images and an in-memory Storage model with
+Native ImageMagick 6 `convert` must be on PATH for image tests. There is no
+automatic binary installer or Sharp fallback. The Google Functions system-package
+reference lists ImageMagick 6 in the Ubuntu 22.04 base image; verify `convert`
+and needed delegates in the exact staging runtime before production.
+https://docs.cloud.google.com/functions/docs/reference/system-packages
+
+The tests use generated real JPEG/PNG/WebP/GIF/TIFF images and an in-memory Storage model with
 generation/metageneration conditions. They cover EXIF rotation, bounding size,
 transparency, tokens, duplicate concurrency, partial failure, retry, stale events,
-source metadata races, output races, deletion, collisions and resource limits.
+source metadata races, output races, deletion, collisions and large inputs.
 Adapter and SDK registration tests do not contact Google Cloud or load credentials.
 They do not substitute for a live staging Storage/Eventarc test.
 
 ## Compatibility gates before production
 
-- Sharp replaces ImageMagick. JPEG/PNG/WebP are supported; GIF, animated images,
-  TIFF, SVG, AVIF and other formats deliberately fail before writes pending
-  explicit compatibility work. The frontend currently permits broad image uploads,
-  so production cutover is blocked until actual supported-format requirements are
-  resolved. Do not silently remove the guard or narrow the frontend without review.
-- Reject inputs above 25 MiB or 40 million decoded pixels; these are new resource
-  limits, not facts about old behavior. Validate against representative uploads.
-- Re-encoding, JPEG quality, color profiles, EXIF/IPTC/XMP and exact bytes can
-  differ from ImageMagick. Metadata retention and dimensions are not pixel parity.
-  Compare representative images, including all EXIF orientations and WebP.
-- Encoded objects (e.g. gzip) and output-path collisions fail before overwriting.
-  Errors are retried by Eventarc, including permanent incompatibilities; set
+- The first draft's Sharp allowlist and byte/pixel admission limits were regressions
+  and have been removed. Production now uses the same ImageMagick operations as
+  the old source. Sharp is a development-only fixture generator/decoder.
+- All `image/*` proceeds to native conversion, without a new application size
+  cap. Runtime memory/disk/time limits and ImageMagick policies still apply.
+  Unsupported codecs fail as native conversion errors rather than being silently
+  converted to another format. Local native version/delegates differ from Cloud.
+- Compare representative images in the actual runtime: JPEG quality, profiles,
+  EXIF/IPTC/XMP, animations, SVG delegates and rare formats can vary between
+  ImageMagick versions. Exact byte equality across versions is not promised.
+- A legitimate original whose filename normalizes to another source's existing
+  thumbnail path is rejected instead of overwriting unrelated data. This is an
+  intentional collision safety difference; inspect actual names before cutover.
+  Encoded downloads are not labeled with stale contentEncoding after conversion.
+  Errors are retried by Eventarc, including permanent codec failures; set
   alerts and an operational resolution path before enabling live traffic.
 - Reserved markers are `blogPipelineInputGeneration`,
   `blogPipelineSourceGeneration`, `blogPipelineSourceName`. Check for existing
@@ -93,11 +104,14 @@ They do not substitute for a live staging Storage/Eventarc test.
 
 ## Configuration and deployment prerequisites (not executed)
 
-`IMAGE_BUCKET` and `IMAGE_REGION` are required parameters with no production
+`IMAGE_BUCKET`, `IMAGE_REGION`, and `IMAGE_MAX_INSTANCES` are required parameters with no production
 defaults. Verify actual bucket location before choosing the event trigger region;
 the legacy function region alone is insufficient. The selected runtime is Node 22;
 dependencies are pinned with a lockfile. Functions have 1 GiB memory, legacy-style
-CPU, concurrency 1, max instances 3, 120-second timeout and retries. Limits require
+CPU, concurrency 1, a capacity selected explicitly at deployment, 120-second
+timeout and retries. The old console reported max instances 3000; no lower
+production cap is silently substituted. Capacity requires v2 quota/load review.
+Limits require
 load validation; no invocation or billing estimate was verified in this task.
 
 The code declares Storage API and `roles/storage.objectUser`. Firebase CLI may
@@ -113,7 +127,7 @@ declarative APIs (official migration guide specifies firebase-tools >=15.32.0).
    metadata without exposing secrets. Resolve format/limit/URL compatibility gates.
 3. With approval, deploy only `image-pipeline` to a separate staging project/bucket
    using the separate config; exercise real uploads, overwrites, retry behavior,
-   tokens, retention/versioning behavior, and native Sharp on Linux Node 22.
+   tokens, retention/versioning behavior, and native ImageMagick on Linux Node 22.
 4. For separately approved production cutover, pause uploads and drain in-flight
    work. Record a narrow event boundary; do not schedule historical backfill.
    Disable/remove the old rotation function and extension only with explicit

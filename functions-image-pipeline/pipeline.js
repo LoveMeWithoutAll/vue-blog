@@ -1,15 +1,13 @@
 const path = require('node:path').posix
-const sharp = require('sharp')
+const { transform } = require('./image')
 
 const INPUT = 'blogPipelineInputGeneration'
 const SOURCE = 'blogPipelineSourceGeneration'
 const OWNER = 'blogPipelineSourceName'
-const MAX_BYTES = 25 * 1024 * 1024
-const MAX_PIXELS = 40 * 1000 * 1000
 
 function outputName (name) {
   const extension = path.extname(name)
-  return `${name.slice(0, name.length - extension.length)}_500x500${extension}`
+  return path.join(path.dirname(name), `${path.basename(name, extension)}_500x500${extension}`)
 }
 
 function metadataFor (object, custom) {
@@ -17,21 +15,8 @@ function metadataFor (object, custom) {
   for (const key of ['contentType', 'cacheControl', 'contentDisposition', 'contentLanguage']) {
     if (object[key] !== undefined) result[key] = object[key]
   }
-  // Encoded objects are rejected below, so contentEncoding must not be copied.
+  // Downloads may be decoded by Storage; do not claim transformed bytes are gzip.
   return result
-}
-
-async function transform (input, orient) {
-  const options = { limitInputPixels: MAX_PIXELS, animated: true }
-  const info = await sharp(input, options).metadata()
-  // Avoid silently flattening animations or changing formats supported by ImageMagick.
-  if (!['jpeg', 'png', 'webp'].includes(info.format) || (info.pages || 1) > 1) {
-    throw new Error('Unsupported image: manual compatibility review required')
-  }
-  const original = orient ? await sharp(input, options).rotate().keepMetadata().toBuffer() : input
-  const thumbnail = await sharp(original, options)
-    .resize(500, 500, { fit: 'inside', withoutEnlargement: true }).keepMetadata().toBuffer()
-  return { original, thumbnail }
 }
 
 function createHandler (store, processImage = transform) {
@@ -48,10 +33,6 @@ function createHandler (store, processImage = transform) {
         current.metadata?.[INPUT] !== event.generation) return 'stale'
     if (current.metadata?.resizedImage === 'true') return 'thumbnail'
     if (!current.contentType?.startsWith('image/')) return 'not-image'
-    if (current.contentEncoding && current.contentEncoding !== 'identity') {
-      throw new Error('Encoded image requires manual review')
-    }
-    if (Number(current.size) > MAX_BYTES) throw new Error('Image exceeds 25 MiB safety limit')
 
     const destination = outputName(event.name)
     const existing = await store.head(event.bucket, destination)
@@ -67,7 +48,7 @@ function createHandler (store, processImage = transform) {
     const input = await store.read(event.bucket, event.name, current.generation)
     // Preserve legacy truthy autoOrient behavior, including previously rotated objects.
     const orient = !current.metadata?.autoOrient
-    const images = await processImage(input, orient)
+    const images = await processImage(input, orient, current)
     if (orient) {
       await store.write(event.bucket, event.name, images.original,
         metadataFor(current, { ...current.metadata, autoOrient: 'true', [INPUT]: current.generation }),
