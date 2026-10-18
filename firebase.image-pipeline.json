@@ -3,7 +3,7 @@
     "source": "functions-image-pipeline",
     "codebase": "image-pipeline",
     "runtime": "nodejs22",
-    "ignore": ["node_modules", ".git", "test", "*.log"],
+    "ignore": ["node_modules", ".git", "test", "integration", "*.log"],
     "predeploy": [
       "npm --prefix \"$RESOURCE_DIR\" run lint",
       "npm --prefix \"$RESOURCE_DIR\" test"
