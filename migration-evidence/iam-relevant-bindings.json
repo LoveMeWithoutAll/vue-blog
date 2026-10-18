@@ -1,0 +1,28 @@
+[
+  {
+    "role": "roles/editor",
+    "members": [
+      "serviceAccount:861459209119@cloudservices.gserviceaccount.com",
+      "serviceAccount:book-blog-with-largo@appspot.gserviceaccount.com",
+      "serviceAccount:firebase-adminsdk-r37au@book-blog-with-largo.iam.gserviceaccount.com"
+    ]
+  },
+  {
+    "role": "roles/firebasestorage.serviceAgent",
+    "members": [
+      "serviceAccount:service-861459209119@gcp-sa-firebasestorage.iam.gserviceaccount.com"
+    ]
+  },
+  {
+    "role": "roles/owner",
+    "members": [
+      "user:LoveMeWithoutAll@gmail.com"
+    ]
+  },
+  {
+    "role": "roles/storage.admin",
+    "members": [
+      "serviceAccount:ext-storage-resize-images@book-blog-with-largo.iam.gserviceaccount.com"
+    ]
+  }
+]
