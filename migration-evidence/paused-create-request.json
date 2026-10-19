@@ -1,0 +1,38 @@
+{
+  "name": "projects/book-blog-with-largo/locations/us-central1/functions/processBlogImage",
+  "environment": "GEN_2",
+  "description": "Paused image migration verification; existing handlers retain processing",
+  "buildConfig": {
+    "runtime": "nodejs22",
+    "entryPoint": "processBlogImage",
+    "source": {
+      "storageSource": {
+        "bucket": "gcf-v2-uploads-861459209119.us-central1.cloudfunctions.appspot.com",
+        "object": "dda5466b-1ccc-4e09-8ad1-a4f41c1d0653.zip"
+      }
+    },
+    "serviceAccount": "projects/book-blog-with-largo/serviceAccounts/861459209119-compute@developer.gserviceaccount.com"
+  },
+  "serviceConfig": {
+    "serviceAccountEmail": "blog-image-pipeline@book-blog-with-largo.iam.gserviceaccount.com",
+    "availableMemory": "1024Mi",
+    "availableCpu": "0.5833",
+    "timeoutSeconds": 120,
+    "maxInstanceCount": 1,
+    "minInstanceCount": 0,
+    "maxInstanceRequestConcurrency": 1,
+    "environmentVariables": {
+      "IMAGE_BUCKET": "book-blog-with-largo.appspot.com",
+      "IMAGE_REGION": "us-central1",
+      "IMAGE_SERVICE_ACCOUNT": "blog-image-pipeline@book-blog-with-largo.iam.gserviceaccount.com",
+      "IMAGE_MAX_INSTANCES": "1",
+      "IMAGE_PROCESSING_PAUSED": "true",
+      "VERIFY_NATIVE_RUNTIME": "true",
+      "FUNCTION_SIGNATURE_TYPE": "cloudevent"
+    }
+  },
+  "labels": {
+    "firebase-functions-codebase": "image-pipeline"
+  },
+  "sourceZipSha256": "dba24624a124b756215ce379ef3d9b49aec36048bbed1627915cbc4b427d05df"
+}

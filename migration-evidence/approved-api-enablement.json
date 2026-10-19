@@ -1,0 +1,65 @@
+{
+  "capturedAt": "2026-10-18T04:58:24.681Z",
+  "services": [
+    {
+      "name": "projects/861459209119/services/run.googleapis.com",
+      "state": "ENABLED"
+    },
+    {
+      "name": "projects/861459209119/services/eventarc.googleapis.com",
+      "state": "ENABLED"
+    },
+    {
+      "name": "projects/861459209119/services/cloudbuild.googleapis.com",
+      "state": "ENABLED"
+    },
+    {
+      "name": "projects/861459209119/services/artifactregistry.googleapis.com",
+      "state": "ENABLED"
+    }
+  ],
+  "serviceAgentRoles": [
+    {
+      "role": "roles/appengine.serviceAgent",
+      "members": [
+        "serviceAccount:service-861459209119@gcp-gae-service.iam.gserviceaccount.com"
+      ]
+    },
+    {
+      "role": "roles/cloudbuild.serviceAgent",
+      "members": [
+        "serviceAccount:service-861459209119@gcp-sa-cloudbuild.iam.gserviceaccount.com"
+      ]
+    },
+    {
+      "role": "roles/cloudfunctions.serviceAgent",
+      "members": [
+        "serviceAccount:service-861459209119@gcf-admin-robot.iam.gserviceaccount.com"
+      ]
+    },
+    {
+      "role": "roles/firebasemods.serviceAgent",
+      "members": [
+        "serviceAccount:service-861459209119@gcp-sa-firebasemods.iam.gserviceaccount.com"
+      ]
+    },
+    {
+      "role": "roles/firebasestorage.serviceAgent",
+      "members": [
+        "serviceAccount:service-861459209119@gcp-sa-firebasestorage.iam.gserviceaccount.com"
+      ]
+    },
+    {
+      "role": "roles/firestore.serviceAgent",
+      "members": [
+        "serviceAccount:service-861459209119@gcp-sa-firestore.iam.gserviceaccount.com"
+      ]
+    },
+    {
+      "role": "roles/run.serviceAgent",
+      "members": [
+        "serviceAccount:service-861459209119@serverless-robot-prod.iam.gserviceaccount.com"
+      ]
+    }
+  ]
+}

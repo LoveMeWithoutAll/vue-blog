@@ -1,0 +1,78 @@
+{
+  "capturedAt": "2026-10-18T04:53:12.583Z",
+  "functions": [
+    {
+      "id": "ext-storage-resize-images-generateResizedImage",
+      "platform": "gcfv1",
+      "region": "asia-northeast1",
+      "runtime": "nodejs8",
+      "entryPoint": "generateResizedImage",
+      "serviceAccount": "ext-storage-resize-images@book-blog-with-largo.iam.gserviceaccount.com",
+      "availableMemoryMb": 1024,
+      "timeoutSeconds": 60,
+      "maxInstances": 3000,
+      "eventTrigger": {
+        "eventType": "google.storage.object.finalize",
+        "eventFilters": {
+          "resource": "projects/_/buckets/book-blog-with-largo.appspot.com"
+        },
+        "retry": false
+      },
+      "state": "ACTIVE"
+    },
+    {
+      "id": "rotateUsingExif",
+      "platform": "gcfv1",
+      "region": "us-central1",
+      "runtime": "nodejs8",
+      "entryPoint": "rotateUsingExif",
+      "serviceAccount": "book-blog-with-largo@appspot.gserviceaccount.com",
+      "availableMemoryMb": 256,
+      "timeoutSeconds": 60,
+      "maxInstances": 3000,
+      "eventTrigger": {
+        "eventType": "google.storage.object.finalize",
+        "eventFilters": {
+          "resource": "projects/_/buckets/book-blog-with-largo.appspot.com"
+        },
+        "retry": false
+      },
+      "state": "ACTIVE"
+    }
+  ],
+  "enabledServices": [
+    "appengine.googleapis.com",
+    "appenginereporting.googleapis.com",
+    "bigquery.googleapis.com",
+    "bigquerystorage.googleapis.com",
+    "cloudapis.googleapis.com",
+    "cloudfunctions.googleapis.com",
+    "cloudtrace.googleapis.com",
+    "datastore.googleapis.com",
+    "deploymentmanager.googleapis.com",
+    "fcm.googleapis.com",
+    "firebase.googleapis.com",
+    "firebasedatabase.googleapis.com",
+    "firebasedynamiclinks.googleapis.com",
+    "firebaseextensions.googleapis.com",
+    "firebaseremoteconfig.googleapis.com",
+    "firebaserules.googleapis.com",
+    "firebasestorage.googleapis.com",
+    "firestore.googleapis.com",
+    "googlecloudmessaging.googleapis.com",
+    "identitytoolkit.googleapis.com",
+    "logging.googleapis.com",
+    "monitoring.googleapis.com",
+    "pubsub.googleapis.com",
+    "runtimeconfig.googleapis.com",
+    "securetoken.googleapis.com",
+    "servicemanagement.googleapis.com",
+    "serviceusage.googleapis.com",
+    "source.googleapis.com",
+    "sql-component.googleapis.com",
+    "storage-api.googleapis.com",
+    "storage-component.googleapis.com",
+    "testing.googleapis.com"
+  ],
+  "hasMoreServices": false
+}

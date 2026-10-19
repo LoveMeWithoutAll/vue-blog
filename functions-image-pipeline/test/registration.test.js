@@ -1,0 +1,26 @@
+const { test } = require('node:test')
+const assert = require('node:assert/strict')
+
+test('only a new isolated v2 function is exported, with required bucket and region', () => {
+  const functions = require('../index')
+  assert.deepEqual(Object.keys(functions), ['processBlogImage'])
+  const endpoint = JSON.parse(JSON.stringify(functions.processBlogImage.__endpoint))
+  assert.equal(endpoint.platform, 'gcfv2')
+  assert.equal(endpoint.eventTrigger.eventType, 'google.cloud.storage.object.v1.finalized')
+  assert.equal(endpoint.eventTrigger.eventFilters.bucket, 'params.IMAGE_BUCKET')
+  assert.equal(endpoint.region, 'params.IMAGE_REGION')
+  assert.equal(endpoint.eventTrigger.retry, true)
+  assert.equal(endpoint.concurrency, 1)
+  assert.equal(endpoint.maxInstances, 'params.IMAGE_MAX_INSTANCES')
+  assert.equal(endpoint.serviceAccountEmail, 'params.IMAGE_SERVICE_ACCOUNT')
+  const config = require('../../firebase.image-pipeline.json')
+  assert.equal(config.functions.length, 1)
+  assert.equal(config.functions[0].codebase, 'image-pipeline')
+  assert.equal(config.functions[0].source, 'functions-image-pipeline')
+})
+
+// A missing event payload proves paused execution cannot reach Storage operations.
+test('default paused entrypoint performs no image or Storage work', async () => {
+  const { processBlogImage } = require('../index')
+  assert.equal(await processBlogImage.run({ id: 'paused-safety-check' }), 'paused')
+})

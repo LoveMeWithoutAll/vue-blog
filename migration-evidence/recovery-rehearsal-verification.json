@@ -1,0 +1,28 @@
+{
+  "service": "projects/book-blog-with-largo/locations/us-central1/services/processblogimage",
+  "latestReadyRevision": "projects/book-blog-with-largo/locations/us-central1/services/processblogimage/revisions/processblogimage-00002-riq",
+  "terminalCondition": {
+    "type": "Ready",
+    "state": "CONDITION_SUCCEEDED",
+    "lastTransitionTime": "2026-10-18T05:30:31.903627Z"
+  },
+  "traffic": [
+    {
+      "type": "TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST",
+      "revision": "processblogimage-00002-riq",
+      "percent": 100
+    }
+  ],
+  "nativeChecks": [
+    {
+      "timestamp": "2026-10-18T05:31:23.319846Z",
+      "revision": "processblogimage-00002-riq",
+      "result": {
+        "message": "Native runtime verification passed",
+        "original": "600x800",
+        "thumbnail": "375x500",
+        "version": "Version: ImageMagick 6.9.11-60 Q16 x86_64 2021-01-25 https://imagemagick.org"
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "principal": "blog-image-pipeline@book-blog-with-largo.iam.gserviceaccount.com",
+    "role": "roles/eventarc.eventReceiver",
+    "resource": "projects/book-blog-with-largo",
+    "verified": true
+  },
+  {
+    "principal": "blog-image-pipeline@book-blog-with-largo.iam.gserviceaccount.com",
+    "role": "roles/storage.objectUser",
+    "resource": "buckets/book-blog-with-largo.appspot.com",
+    "verified": true
+  },
+  {
+    "principal": "service-861459209119@gcp-sa-pubsub.iam.gserviceaccount.com",
+    "role": "roles/iam.serviceAccountTokenCreator",
+    "resource": "projects/book-blog-with-largo/serviceAccounts/blog-image-pipeline@book-blog-with-largo.iam.gserviceaccount.com",
+    "verified": true
+  }
+]

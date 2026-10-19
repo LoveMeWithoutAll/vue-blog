@@ -19,3 +19,7 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
+
+# Local Firebase emulator diagnostics
+firebase-debug.log*
+*-debug.log

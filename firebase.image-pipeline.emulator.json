@@ -1,0 +1,1 @@
+{"functions":[{"source":"functions-image-pipeline","codebase":"image-pipeline","runtime":"nodejs22"}],"storage":{"rules":"storage.emulator.rules"},"emulators":{"functions":{"host":"127.0.0.1","port":5001},"storage":{"host":"127.0.0.1","port":9199},"eventarc":{"host":"127.0.0.1","port":9299},"ui":{"enabled":false},"singleProjectMode":true}}

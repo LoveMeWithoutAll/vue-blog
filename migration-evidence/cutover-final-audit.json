@@ -1,0 +1,58 @@
+{
+  "capturedAt": "2026-10-18T05:43:28.093Z",
+  "functions": [
+    {
+      "id": "processBlogImage",
+      "state": "ACTIVE",
+      "platform": "gcfv2"
+    }
+  ],
+  "newFunction": {
+    "state": "ACTIVE",
+    "paused": "false",
+    "minInstances": 0,
+    "maxInstances": 3,
+    "concurrency": 1,
+    "serviceAccount": "blog-image-pipeline@book-blog-with-largo.iam.gserviceaccount.com"
+  },
+  "extensionServiceAccount": "absent",
+  "homePageStatus": 200,
+  "logsTruncated": false,
+  "errorLogCount": 1,
+  "httpRequests": [
+    {
+      "status": 200,
+      "latency": "0.041303743s"
+    },
+    {
+      "status": 200,
+      "latency": "0.005488894s"
+    },
+    {
+      "status": 500,
+      "latency": "0.472765655s"
+    },
+    {
+      "status": 200,
+      "latency": "1.016328808s"
+    },
+    {
+      "status": 200,
+      "latency": "0.004758992s"
+    },
+    {
+      "status": 200,
+      "latency": "0.269359456s"
+    },
+    {
+      "status": 200,
+      "latency": "0.929619771s"
+    }
+  ],
+  "pipelineOutcomes": {
+    "deleted": 1,
+    "thumbnail": 2,
+    "processed": 2,
+    "complete": 1
+  }
+}

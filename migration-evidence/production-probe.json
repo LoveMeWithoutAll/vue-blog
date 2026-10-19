@@ -1,0 +1,47 @@
+{
+  "startedAt": "2026-10-18T05:42:39.641Z",
+  "source": "images/__migration_cutover_20261018T0540Z_exif6.jpg",
+  "thumbnail": "images/__migration_cutover_20261018T0540Z_exif6_500x500.jpg",
+  "rounds": [
+    {
+      "round": 1,
+      "uploadedGeneration": "1792302159993573",
+      "sourceGeneration": "1792302161289888",
+      "thumbnailGeneration": "1792302161631902",
+      "originalDimensions": [
+        600,
+        800
+      ],
+      "thumbnailDimensions": [
+        375,
+        500
+      ],
+      "sourceTokenPreserved": true,
+      "sourceDownloadStatus": 200,
+      "thumbnailTokenIndependent": true,
+      "stableFor10Seconds": true,
+      "durationMs": 6168
+    },
+    {
+      "round": 2,
+      "uploadedGeneration": "1792302176580948",
+      "sourceGeneration": "1792302177290072",
+      "thumbnailGeneration": "1792302177687803",
+      "originalDimensions": [
+        600,
+        900
+      ],
+      "thumbnailDimensions": [
+        333,
+        500
+      ],
+      "sourceTokenPreserved": true,
+      "sourceDownloadStatus": 200,
+      "thumbnailTokenIndependent": true,
+      "stableFor10Seconds": true,
+      "durationMs": 5138
+    }
+  ],
+  "cleanedUp": true,
+  "completedAt": "2026-10-18T05:43:12.982Z"
+}

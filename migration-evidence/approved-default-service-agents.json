@@ -1,0 +1,22 @@
+[
+  {
+    "role": "roles/run.serviceAgent",
+    "principal": "service-861459209119@serverless-robot-prod.iam.gserviceaccount.com",
+    "verified": true
+  },
+  {
+    "role": "roles/eventarc.serviceAgent",
+    "principal": "service-861459209119@gcp-sa-eventarc.iam.gserviceaccount.com",
+    "verified": true
+  },
+  {
+    "role": "roles/cloudbuild.serviceAgent",
+    "principal": "service-861459209119@gcp-sa-cloudbuild.iam.gserviceaccount.com",
+    "verified": true
+  },
+  {
+    "role": "roles/artifactregistry.serviceAgent",
+    "principal": "service-861459209119@gcp-sa-artifactregistry.iam.gserviceaccount.com",
+    "verified": true
+  }
+]

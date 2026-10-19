@@ -1,0 +1,45 @@
+{
+  "checkedAt": "2026-10-18T05:44:58.916Z",
+  "lastMinuteStart": "2026-10-18T05:43:59.864Z",
+  "lastMinuteErrorCount": 0,
+  "metrics": [
+    {
+      "type": "pubsub.googleapis.com/subscription/num_undelivered_messages",
+      "series": [
+        {
+          "latest": {
+            "interval": {
+              "startTime": "2026-10-18T05:44:00Z",
+              "endTime": "2026-10-18T05:44:00Z"
+            },
+            "value": {
+              "int64Value": "0"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "pubsub.googleapis.com/subscription/oldest_unacked_message_age",
+      "series": [
+        {
+          "latest": {
+            "interval": {
+              "startTime": "2026-10-18T05:44:00Z",
+              "endTime": "2026-10-18T05:44:00Z"
+            },
+            "value": {
+              "int64Value": "0"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "knownTestTransient": {
+    "cause": "Storage generation/metageneration precondition conflict",
+    "httpStatus": 500,
+    "count": 1,
+    "note": "CAS prevented a competing write; later test requests200 and stable generations verified. SDK also logged MaxListeners warnings; no sustained failure established."
+  }
+}
