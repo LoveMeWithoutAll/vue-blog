@@ -64,7 +64,10 @@ Conditional low-traffic estimate USD0–2/month (~KRW0–3,000); see
 MONTHLY_COST_ESTIMATE.md for measured storage, free-tier assumptions and limits.
 KRW13,300 is an alert only, not a forecast or cap.
 
-Evidence:cutover-removal-operations.json,cutover-removal-status.json,
-cutover-activation-operation.json,production-probe.json,cutover-final-audit.json,
+Evidence:cutover-removal-status.json,production-probe.json,cutover-final-audit.json,
 cutover-settled-check.json,cutover-quiescence-usage.json.
 Source changes are committed locally; no Git remote push was performed.
+
+Transient operation IDs, initial paused-probe records and superseded approval
+notes were removed during cleanup. Their full history remains in commit359c3ee;
+final audit and recovery evidence remain in this directory.

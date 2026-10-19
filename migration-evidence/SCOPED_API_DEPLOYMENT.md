@@ -23,10 +23,10 @@ trigger separately on future updates/deletion; never infer it from function meta
 
 Both legacy functions remain ACTIVE. A 73-byte text/plain probe was created at
 _migration-verification/paused-event-20261018T0526Z.txt, generation1792301149849811,
-with ifGenerationMatch=0. See paused-event-delivery.json for delivery results.
+with ifGenerationMatch=0. The original probe records remain in Git commit359c3ee.
 Delivery was confirmed by the paused handler log and HTTP200 at05:25:50UTC.
-The exact probe generation was subsequently cleaned up; see
-paused-event-probe-cleanup.json. No existing object was deleted.
+The exact probe generation was subsequently cleaned up. No existing object was deleted.
+Current operational status and final evidence are in CUTOVER_RESULT.md.
 No production image processing switch or historical reprocessing occurred.
 
 The following is the pre-execution design; the notes above supersede steps4/6
